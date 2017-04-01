@@ -1,4 +1,5 @@
 #!/bin/bash
+if ((0)); then
 unset MYAPP_DEBUG
 unset MYAPP_PORT
 unset MYAPP_USER
@@ -21,4 +22,30 @@ export MYAPP_USERS="rob,ken,robert"
 export MYAPP_USERS="Me,BobbyMcGee"
 #export MYAPP_COLORCODES="red:1,green:2,blue:3"
 #export MYAPP_COLOR_CODES="red:1,green:2,blue:3"
+elif ((1)); then
+    export APP_OVERRIDE_PREFIX=ANOTHERPREFIX
+    unset ANOTHERPREFIX_DEBUG
+    unset ANOTHERPREFIX_PORT
+    unset ANOTHERPREFIX_USER
+    unset ANOTHERPREFIX_USERNAME
+    unset ANOTHERPREFIX_USER_NAME
+    unset ANOTHERPREFIX_RATE
+    unset ANOTHERPREFIX_TIMEOUT
+    unset ANOTHERPREFIX_USERS
+    unset ANOTHERPREFIX_COLORCODES
+    unset ANOTHERPREFIX_COLOR_CODES
 
+    export ANOTHERPREFIX_DEBUG="true"
+    export ANOTHERPREFIX_PORT="8080"
+    export ANOTHERPREFIX_USER="David"
+    # export ANOTHERPREFIX_USERNAME="David Walter"
+    export ANOTHERPREFIX_USER_NAME="David Walter"
+    export ANOTHERPREFIX_RATE="0.5"
+    export ANOTHERPREFIX_TIMEOUT="3m"
+    export ANOTHERPREFIX_USERS="rob,ken,robert"
+    export ANOTHERPREFIX_USERS="Me,BobbyMcGee,Nobody"
+
+    export ANOTHERPREFIX_NAME_OVERRIDE="Me,BobbyMcGee,Nobody"
+    #export ANOTHERPREFIX_COLORCODES="red:1,green:2,blue:3"
+    #export ANOTHERPREFIX_COLOR_CODES="red:1,green:2,blue:3"
+fi

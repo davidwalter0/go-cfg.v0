@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"os"
 
 	cfg "github.com/davidwalter0/envflagstructconfig"
 )
@@ -14,7 +15,10 @@ func init() {
 
 func main() {
 	defer tracer.ScopedTrace()()
-	prefix := "myapp"
+	var prefix = os.Getenv("APP_OVERRIDE_PREFIX")
+	if len(prefix) == 0 {
+		prefix = "myapp"
+	}
 	var specification Specification
 	cfg.Initialize(prefix, &specification)
 	log.Println(specification)

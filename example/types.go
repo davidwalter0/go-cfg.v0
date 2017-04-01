@@ -6,11 +6,13 @@ import (
 
 // Specification example test struct
 type Specification struct {
-	Debug        bool           `envconfig:"Debug" usage:"enable debug mode"`
+	Debug        bool           `name:"Debug" short:"d" default:"false" usage:"enable debug mode"`
 	Port         int            `short:"p" default:"8080" usage:"primary ip port"`
+	CaC          string         `usage:"cc users for ..."`
+	CC           string         `usage:"cc users for ..."`
 	User         string         `usage:"user for ..."`
 	UserName     string         `envconfig:"USER_NAME"`
-	Users        []string       ``
+	Users        []string       `name:"nameOverride"`
 	UserArray    []string       `default:"x,y,z,0,1"`
 	IntArray     []int64        `default:"0,1,2,3,4"`
 	Rate         float64        ``
@@ -26,7 +28,7 @@ type Specification struct {
 	Int32        int32          `short:"i32" default:"1048576"  usage:"int32  test"`
 	Nint32       int32          `short:"n32" default:"-1232"    usage:"nint32 test"`
 	Uint32       uint32         `short:"u32" default:"255"      usage:"uint32 test" required:""`
-	ColorCodes   map[string]int `short:"cc"  default:"white:0xfff,black:000,red:f00,green:0f0,blue:00f"`
+	ColorCodes   map[string]int `short:"color"  default:"white:0xfff,black:000,red:f00,green:0f0,blue:00f"`
 	// ColorCodes map[string]int     `short:"cc"  default:"white:0,black:1,red:,green:2,blue:3"`
 	Map map[string]float64 `short:"m"   default:"π:3.14159,ξ:1,ρ:.01,φ:1.2,β:3,α:.01,δ:3,ε:.001,φ:.1,ψ:.9,ω:2.1"`
 }

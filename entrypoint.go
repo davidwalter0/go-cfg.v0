@@ -217,6 +217,7 @@ func Initialize(prefix string, structure interface{}) {
 		}
 
 		info.Initialize()
+
 		names := []string{}
 		if len(info.FlagName) > 0 {
 			names = append(names, info.FlagName)
