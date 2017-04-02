@@ -1,0 +1,102 @@
+package flag
+
+////////////////////////////////////////////////////////////////////////
+//
+////////////////////////////////////////////////////////////////////////
+import (
+	"fmt"
+	"strings"
+  "strconv"
+  "reflect"
+)
+
+// Slice{{.Type}}Value []{{.Type}}
+type Slice{{.Type}}Value []{{.type}}
+
+func newSlice{{.Type}}Value(val Slice{{.Type}}Value, p *Slice{{.Type}}Value) *Slice{{.Type}}Value {
+	for i := 0; i < len(val); i++ {
+		*p = append(*p, val[i])
+	}
+	return p
+}
+
+// Set a slice after parsing a string
+func (slc *Slice{{.Type}}Value) Set(s string) error {
+	T := reflect.TypeOf(Slice{{.Type}}Value{}).Elem()
+  fmt.Printf("%v %T\n", T,T)
+	var n interface{}
+	var l = strings.Split(s, ",")
+
+	for _, text := range l {
+  // start {{.type}}
+    {{ $type := .type}}{{- $list := split "int8 int16 int int32 int64" -}}
+    {{- range $list -}}{{- if eq $type . -}}
+		n, _ = strconv.ParseInt(text, 0, T.Bits())
+    *slc = append(*slc, ({{.}})(n.(int64)))
+    {{- end -}}
+    {{- end -}}
+    {{ $type := .type}}{{- $list := split "uint8 uint16 uint uint32 uint64" -}}
+    {{- range $list -}}{{- if eq $type . -}}
+		n, _ = strconv.ParseUint(text, 0, T.Bits())
+    *slc = append(*slc, ({{.}})(n.(uint64)))
+    {{- end -}}
+    {{- end -}}
+    {{ $type := .type}}{{- $list := split "float32 float64" -}}
+    {{- range $list -}}{{- if eq $type . -}}
+		n, _ = strconv.ParseFloat(text, T.Bits())
+    *slc = append(*slc, ({{.}})(n.(float64)))
+    {{- end -}}
+    {{- end -}}
+    {{ $type := .type}}{{- $list := split "bool" -}}
+    {{- range $list -}}{{- if eq $type . -}}
+		n, _ = strconv.ParseBool(text)
+    *slc = append(*slc, ({{.}})(n.(bool)))
+    {{- end -}}
+    {{- end -}}
+    {{ if "" }} {{end}}
+  // end {{.type}}
+	}
+	return nil
+}
+
+// Get get a slice interface from the value
+func (slc *Slice{{.Type}}Value) Get() interface{} { return ([]{{.type}})(*slc) }
+
+// String join a string from slice
+func (slc *Slice{{.Type}}Value) String() string {
+  t := []string{}
+  for _, v := range *slc {
+    t = append(t, fmt.Sprintf("%v", v))
+  }
+  return strings.Join(t, ",")
+}
+
+// Slice{{.Type}}Var defines an slice flag with specified name,
+// default value, and usage string.  The argument p points to an slice
+// variable in which to store the value of the flag.
+func (f *FlagSet) Slice{{.Type}}Var(p *Slice{{.Type}}Value, name string, value Slice{{.Type}}Value, usage string) {
+	f.Var(newSlice{{.Type}}Value(value, p), name, usage)
+}
+
+// Slice{{.Type}}Var defines an slice flag with specified name,
+// default value, and usage string.  The argument p points to an slice
+// variable in which to store the value of the flag.
+func Slice{{.Type}}Var(p *Slice{{.Type}}Value, name string, value Slice{{.Type}}Value, usage string) {
+	CommandLine.Var(newSlice{{.Type}}Value(value, p), name, usage)
+}
+
+// Slice{{.Type}} defines an slice flag with specified name, default value, and
+// usage string.  The return value is the address of an slice variable
+// that stores the value of the flag.
+func (f *FlagSet) Slice{{.Type}}(name string, value Slice{{.Type}}Value, usage string) *Slice{{.Type}}Value {
+	p := new(Slice{{.Type}}Value)
+	f.Slice{{.Type}}Var(p, name, value, usage)
+	return p
+}
+
+// Slice{{.Type}} defines an slice flag with specified name, default value, and
+// usage string.  The return value is the address of an slice variable
+// that stores the value of the flag.
+func Slice{{.Type}}(name string, value Slice{{.Type}}Value, usage string) *Slice{{.Type}}Value {
+	return CommandLine.Slice{{.Type}}(name, value, usage)
+}

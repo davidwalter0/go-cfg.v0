@@ -1,0 +1,10 @@
+# enable template processing transformations & definitions
+- name: typename
+  env: true
+  value: TYPENAME
+
+- name: Type
+  value: '{{.typename|lower|capitalize}}'
+  
+- name: type
+  value: '{{.typename|lower}}'
