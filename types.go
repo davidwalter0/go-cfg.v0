@@ -1,64 +1,27 @@
 package envflagstructconfig
 
-import (
-	"errors"
-	"reflect"
-	"strconv"
-	"time"
-)
-
-// ErrInvalidSpecification indicates that a specification is of the wrong type.
-var ErrInvalidSpecification = errors.New("Specification must be a struct pointer")
-
-// Info struct to hold parse information
-type Info struct {
-	Num           int // field number
-	Prefix        string
-	Name          string
-	Key           string // ENV variable name
-	Field         reflect.Value
-	Tag           reflect.StructTag
-	Initial       string
-	Short         string // short flag name
-	Usage         string
-	FlagName      string // hyphenated flag name
-	Value         string
-	AbstractValue interface{}
-	StructField   reflect.StructField
-	Address       interface{}
-	Kind          reflect.Kind
-	KeyKind       reflect.Kind
-	ValueKind     reflect.Kind
+// StructInfo struct to hold parse information
+type StructInfo struct {
+	StructPtr    interface{} // structure pointer to use for initialization
+	EnvVarPrefix string      // Application prefix
 }
 
-// TypeFromTextToReflectValue string to reflect value
-func TypeFromTextToReflectValue(T reflect.Type, text string) reflect.Value {
-	defer tracer.ScopedTrace()()
-	value := reflect.New(T).Elem()
-	if len(text) > 0 {
-		switch T.Kind() {
-		case reflect.String:
-			value.SetString(text)
-		case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64:
-			if T.Kind() == reflect.Int64 &&
-				T.PkgPath() == "time" &&
-				T.Name() == "Duration" {
-				lhs, _ := time.ParseDuration(text)
-				value.SetInt((int64)(lhs))
-			}
-			lhs, _ := strconv.ParseInt(text, 0, T.Bits())
-			value.SetInt(lhs)
-		case reflect.Uint, reflect.Uint8, reflect.Uint16, reflect.Uint32, reflect.Uint64:
-			lhs, _ := strconv.ParseUint(text, 0, T.Bits())
-			value.SetUint(lhs)
-		case reflect.Bool:
-			lhs, _ := strconv.ParseBool(text)
-			value.SetBool(lhs)
-		case reflect.Float32, reflect.Float64:
-			lhs, _ := strconv.ParseFloat(text, T.Bits())
-			value.SetFloat(lhs)
-		default:
-		}
-	}
-	return value
+// InfoType struct to hold parse information
+type InfoType struct {
+	AppName      string
+	EnvVarPrefix string // env variable application prefix
+	Name         string // from var name if tag name is present replace member name with tag
+	KeyName      string // ENV variable name prefix + "_" + name CamelCase -> PRF_CAMEL_CASE
+	Default      string // default from tag, empty string for default
+	EnvText      string // environment text, empty string for default
+	Short        string // short flag name
+	Usage        string // description
+	FlagName     string // Hyphenated flag name CamelCase -> camel-case
+	Initial      string // if env use, else if default tag use, else use type default
+	Depth        int
+	SubPrefix    string
 }
+
+// AppEnvVarPrefixOverrideName environment variable application lookup
+// prefix override, default prefix is the struct name
+var AppEnvVarPrefixOverrideName = "APP_OVERRIDE_PREFIX"

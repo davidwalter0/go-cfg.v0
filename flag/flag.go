@@ -159,7 +159,7 @@ func newUintValue(val uint, p *uint) *uintValue {
 }
 
 func (i *uintValue) Set(s string) error {
-	v, err := strconv.ParseUint(s, 0, 64)
+	v, err := strconv.ParseUint(s, 0, 32)
 	*i = uintValue(v)
 	return err
 }
@@ -1154,7 +1154,7 @@ func newInt16Value(val int16, p *int16) *int16Value {
 }
 
 func (i *int16Value) Set(s string) error {
-	v, err := strconv.ParseInt(s, 0, 8)
+	v, err := strconv.ParseInt(s, 0, 16)
 	*i = int16Value(v)
 	return err
 }
@@ -1198,7 +1198,7 @@ func newUint16Value(val uint16, p *uint16) *uint16Value {
 }
 
 func (i *uint16Value) Set(s string) error {
-	v, err := strconv.ParseUint(s, 0, 8)
+	v, err := strconv.ParseUint(s, 0, 16)
 	*i = uint16Value(v)
 	return err
 }
@@ -1246,7 +1246,7 @@ func newInt32Value(val int32, p *int32) *int32Value {
 }
 
 func (i *int32Value) Set(s string) error {
-	v, err := strconv.ParseInt(s, 0, 8)
+	v, err := strconv.ParseInt(s, 0, 32)
 	*i = int32Value(v)
 	return err
 }
@@ -1290,7 +1290,7 @@ func newUint32Value(val uint32, p *uint32) *uint32Value {
 }
 
 func (i *uint32Value) Set(s string) error {
-	v, err := strconv.ParseUint(s, 0, 8)
+	v, err := strconv.ParseUint(s, 0, 32)
 	*i = uint32Value(v)
 	return err
 }
