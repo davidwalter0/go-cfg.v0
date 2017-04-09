@@ -1,13 +1,32 @@
 package envflagstructconfig
 
 import (
+	"github.com/davidwalter0/envflagstructconfig/flag"
 	"reflect"
 )
 
-// Process initialize with *struct (struct pointer) and use the struct
+// Parse the struct and flags initializing configuration from tags,
+// environment, and flags in order, additional flags must be defined
+// prior to Parse call as it calls flag.Parse
+func (structInfo *StructInfo) Parse() (err error) {
+	if !structInfo.Processed {
+		structInfo.Processed = true
+		if err = structInfo.process(); err != nil {
+			return
+		}
+		flag.Parse()
+		flag.Usage()
+	} else {
+		flag.Usage()
+		panic("Process called more than once")
+	}
+	return
+}
+
+// process initialize with *struct (struct pointer) and use the struct
 // name as the app name for the env prefix
 // func (structInfo *StructInfo) Init(structPtr interface{}) (err error) {
-func (structInfo *StructInfo) Process() (err error) {
+func (structInfo *StructInfo) process() (err error) {
 	if reflect.TypeOf(structInfo.StructPtr).Kind() != reflect.Ptr {
 		err = ErrInvalidArgPointerRequired
 	} else {

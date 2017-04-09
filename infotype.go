@@ -3,6 +3,7 @@ package envflagstructconfig
 import (
 	"github.com/davidwalter0/envflagstructconfig/flag"
 
+	"fmt"
 	"reflect"
 	"strings"
 )
@@ -62,7 +63,9 @@ func (info *InfoType) Process(prefix string, structField reflect.StructField, pt
 			if err = TextTypedVal(ptr, info.Initial); err != nil {
 				return
 			}
-			flag.MakeVar(ptr, info.FlagName, info.Default, info.Usage)
+			flag.MakeVar(ptr, info.FlagName, info.Default,
+				info.Usage+fmt.Sprintf(":Env var name(%s) : (%v)", info.KeyName, structField.Type))
+
 		}
 	}
 	// flag.Var...

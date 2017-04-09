@@ -4,6 +4,7 @@ package envflagstructconfig
 type StructInfo struct {
 	StructPtr    interface{} // structure pointer to use for initialization
 	EnvVarPrefix string      // Application prefix
+	Processed    bool
 }
 
 // InfoType struct to hold parse information
