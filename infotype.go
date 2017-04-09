@@ -59,7 +59,7 @@ func (info *InfoType) Process(prefix string, structField reflect.StructField, pt
 		}
 	default:
 		if len(info.Initial) != 0 {
-			if err = Text2TypedVal(ptr, info.Initial); err != nil {
+			if err = TextTypedVal(ptr, info.Initial); err != nil {
 				return
 			}
 			flag.MakeVar(ptr, info.FlagName, info.Default, info.Usage)
