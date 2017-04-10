@@ -50,11 +50,11 @@ func (structInfo *StructInfo) process() (err error) {
 			for i := 0; i < elementType.NumField(); i++ {
 				structField := elementType.Field(i)
 				ptr := element.Field(i).Addr().Interface()
-				var info = &InfoType{
+				var member = &MemberType{
 					AppName:      AppName,
 					EnvVarPrefix: prefix,
 				}
-				if err = info.Process(prefix, structField, ptr, depth); err != nil {
+				if err = member.Process(prefix, structField, ptr, depth); err != nil {
 					return
 				}
 			}

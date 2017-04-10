@@ -70,12 +70,14 @@ func MapFromText(arg /*map type*/ interface{}, textArg ...string) (err error) {
 					T := reflect.TypeOf(arg).Elem().Elem()
 					var slice = reflect.ValueOf(arg).Elem()
 					for _, v := range values {
-						svalue := reflect.New(T)
-						value := svalue.Elem().Addr().Interface()
-						if err := MapFromText(value, v); err != nil {
-							return err
+						if v = strings.TrimSpace(v); len(v) > 0 {
+							svalue := reflect.New(T)
+							value := svalue.Elem().Addr().Interface()
+							if err := MapFromText(value, v); err != nil {
+								return err
+							}
+							slice.Set(reflect.Append(slice, svalue.Elem()))
 						}
-						slice.Set(reflect.Append(slice, svalue.Elem()))
 					}
 				}
 			case reflect.Map:
@@ -84,8 +86,8 @@ func MapFromText(arg /*map type*/ interface{}, textArg ...string) (err error) {
 					mp := reflect.MakeMap(reflect.TypeOf(arg).Elem())
 					for _, pair := range pairs {
 						kvpair := strings.Split(pair, ":")
-						if len(kvpair) != 2 {
-							return fmt.Errorf("Map argument requires pairs text source: %s", pair)
+						if len(kvpair) != 2 || (len(kvpair[0]) == 0 && len(kvpair[1]) == 0) {
+							return fmt.Errorf("Map argument requires non empty pairs key:value text source: %s", pair)
 						}
 						v := reflect.TypeOf(arg).Elem().Elem()
 						k := reflect.TypeOf(arg).Elem().Key()

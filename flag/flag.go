@@ -79,7 +79,7 @@ import (
 	"reflect"
 	"sort"
 	"strconv"
-	"strings"
+	//	"strings"
 	"time"
 )
 
@@ -1323,55 +1323,4 @@ func (f *FlagSet) Uint32(name string, value uint32, usage string) *uint32 {
 // The return value is the address of a uint32 variable that stores the value of the flag.
 func Uint32(name string, value uint32, usage string) *uint32 {
 	return CommandLine.Uint32(name, value, usage)
-}
-
-////////////////////////////////////////////////////////////////////////
-//
-////////////////////////////////////////////////////////////////////////
-
-// SliceValue []string
-type SliceValue []string
-
-func newSliceValue(val SliceValue, p *SliceValue) *SliceValue {
-	*p = val
-	return (*SliceValue)(p)
-}
-
-// Set a slice after parsing a string
-func (slc *SliceValue) Set(s string) error {
-	v := strings.Split(s, ",")
-	*slc = SliceValue(v)
-	return nil
-}
-
-// Get get a slice interface from the value
-func (slc *SliceValue) Get() interface{} { return SliceValue(*slc) }
-
-// String join a string from slice
-func (slc *SliceValue) String() string { return strings.Join(*slc, ",") }
-
-// SliceVar defines an slice flag with specified name, default value, and usage string.
-// The argument p points to an slice variable in which to store the value of the flag.
-func (f *FlagSet) SliceVar(p *SliceValue, name string, value SliceValue, usage string) {
-	f.Var(newSliceValue(value, p), name, usage)
-}
-
-// SliceVar defines an slice flag with specified name, default value, and usage string.
-// The argument p points to an slice variable in which to store the value of the flag.
-func SliceVar(p *SliceValue, name string, value SliceValue, usage string) {
-	CommandLine.Var(newSliceValue(value, p), name, usage)
-}
-
-// Slice defines an slice flag with specified name, default value, and usage string.
-// The return value is the address of an slice variable that stores the value of the flag.
-func (f *FlagSet) Slice(name string, value SliceValue, usage string) *SliceValue {
-	p := new(SliceValue)
-	f.SliceVar(p, name, value, usage)
-	return p
-}
-
-// Slice defines an slice flag with specified name, default value, and usage string.
-// The return value is the address of an slice variable that stores the value of the flag.
-func Slice(name string, value SliceValue, usage string) *SliceValue {
-	return CommandLine.Slice(name, value, usage)
 }

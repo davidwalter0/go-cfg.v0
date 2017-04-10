@@ -7,8 +7,8 @@ type StructInfo struct {
 	Processed    bool
 }
 
-// InfoType struct to hold parse information
-type InfoType struct {
+// MemberType struct to hold parse information
+type MemberType struct {
 	AppName      string
 	EnvVarPrefix string // env variable application prefix
 	Name         string // from var name if tag name is present replace member name with tag
@@ -18,7 +18,7 @@ type InfoType struct {
 	Short        string // short flag name
 	Usage        string // description
 	FlagName     string // Hyphenated flag name CamelCase -> camel-case
-	Initial      string // if env use, else if default tag use, else use type default
+	Value        string // if env use, else if default tag use, else use type's default
 	Depth        int
 	SubPrefix    string
 }

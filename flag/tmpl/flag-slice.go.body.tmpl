@@ -22,43 +22,45 @@ func (slc *{{.SliceTypeValueName}}) Set(s string) error {
 	var l = strings.Split(s, ",")
 
 	for _, text := range l {
-    // start {{.CastTypeName}}
-    {{ $type := .type }}{{ if (eq "time.Duration" .CastTypeName) -}}
-    lhs, err := time.ParseDuration(text)
-    if err != nil {
-      panic(err)
+    if text = strings.TrimSpace(text); len(text)>0 {
+      // start {{.CastTypeName}}
+      {{ $type := .type }}{{ if (eq "time.Duration" .CastTypeName) -}}
+      lhs, err := time.ParseDuration(text)
+      if err != nil {
+        panic(err)
+      }
+      *slc = append(*slc, lhs)
+      {{- end -}}
+      {{ $type := .type }}{{- if eq "string" $type -}}
+      *slc = append(*slc, text)
+      {{- end -}}
+      {{ $type := .type }}{{- $list := split "int8 int16 int int32 int64" -}}
+      {{- range $list -}}{{- if eq $type . -}}
+      n, _ = strconv.ParseInt(text, 0, T.Bits())
+      *slc = append(*slc, ({{.}})(n.(int64)))
+      {{- end -}}
+      {{- end -}}
+      {{ $type := .type }}{{- $list := split "uint8 uint16 uint uint32 uint64" -}}
+      {{- range $list -}}{{- if eq $type . -}}
+      n, _ = strconv.ParseUint(text, 0, T.Bits())
+      *slc = append(*slc, ({{.}})(n.(uint64)))
+      {{- end -}}
+      {{- end -}}
+      {{ $type := .type }}{{- $list := split "float32 float64" -}}
+      {{- range $list -}}{{- if eq $type . -}}
+      n, _ = strconv.ParseFloat(text, T.Bits())
+      *slc = append(*slc, ({{.}})(n.(float64)))
+      {{- end -}}
+      {{- end -}}
+      {{ $type := .type }}{{- $list := split "bool" -}}
+      {{- range $list -}}{{- if eq $type . -}}
+      n, _ = strconv.ParseBool(text)
+      *slc = append(*slc, ({{.}})(n.(bool)))
+      {{- end -}}
+      {{- end -}}
+      {{ if "" }} {{end}}
+      // end {{.CastTypeName}}
     }
-    *slc = append(*slc, lhs)
-    {{- end -}}
-    {{ $type := .type }}{{- if eq "string" $type -}}
-    *slc = append(*slc, text)
-    {{- end -}}
-    {{ $type := .type }}{{- $list := split "int8 int16 int int32 int64" -}}
-    {{- range $list -}}{{- if eq $type . -}}
-		n, _ = strconv.ParseInt(text, 0, T.Bits())
-    *slc = append(*slc, ({{.}})(n.(int64)))
-    {{- end -}}
-    {{- end -}}
-    {{ $type := .type }}{{- $list := split "uint8 uint16 uint uint32 uint64" -}}
-    {{- range $list -}}{{- if eq $type . -}}
-		n, _ = strconv.ParseUint(text, 0, T.Bits())
-    *slc = append(*slc, ({{.}})(n.(uint64)))
-    {{- end -}}
-    {{- end -}}
-    {{ $type := .type }}{{- $list := split "float32 float64" -}}
-    {{- range $list -}}{{- if eq $type . -}}
-		n, _ = strconv.ParseFloat(text, T.Bits())
-    *slc = append(*slc, ({{.}})(n.(float64)))
-    {{- end -}}
-    {{- end -}}
-    {{ $type := .type }}{{- $list := split "bool" -}}
-    {{- range $list -}}{{- if eq $type . -}}
-		n, _ = strconv.ParseBool(text)
-    *slc = append(*slc, ({{.}})(n.(bool)))
-    {{- end -}}
-    {{- end -}}
-    {{ if "" }} {{end}}
-    // end {{.CastTypeName}}
 	}
 	return nil
 }

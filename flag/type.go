@@ -34,13 +34,15 @@ func (slc *sliceDurationValue) Set(s string) error {
 	var l = strings.Split(s, ",")
 
 	for _, text := range l {
-    // start time.Duration
-    lhs, err := time.ParseDuration(text)
-    if err != nil {
-      panic(err)
+    if text = strings.TrimSpace(text); len(text)>0 {
+      // start time.Duration
+      lhs, err := time.ParseDuration(text)
+      if err != nil {
+        panic(err)
+      }
+      *slc = append(*slc, lhs)
+      // end time.Duration
     }
-    *slc = append(*slc, lhs)
-    // end time.Duration
 	}
 	return nil
 }
@@ -109,10 +111,12 @@ func (slc *sliceIntValue) Set(s string) error {
 	var l = strings.Split(s, ",")
 
 	for _, text := range l {
-    // start int
-    n, _ = strconv.ParseInt(text, 0, T.Bits())
-    *slc = append(*slc, (int)(n.(int64)))
-    // end int
+    if text = strings.TrimSpace(text); len(text)>0 {
+      // start int
+      n, _ = strconv.ParseInt(text, 0, T.Bits())
+      *slc = append(*slc, (int)(n.(int64)))
+      // end int
+    }
 	}
 	return nil
 }
@@ -181,10 +185,12 @@ func (slc *sliceInt8Value) Set(s string) error {
 	var l = strings.Split(s, ",")
 
 	for _, text := range l {
-    // start int8
-    n, _ = strconv.ParseInt(text, 0, T.Bits())
-    *slc = append(*slc, (int8)(n.(int64)))
-    // end int8
+    if text = strings.TrimSpace(text); len(text)>0 {
+      // start int8
+      n, _ = strconv.ParseInt(text, 0, T.Bits())
+      *slc = append(*slc, (int8)(n.(int64)))
+      // end int8
+    }
 	}
 	return nil
 }
@@ -253,10 +259,12 @@ func (slc *sliceInt16Value) Set(s string) error {
 	var l = strings.Split(s, ",")
 
 	for _, text := range l {
-    // start int16
-    n, _ = strconv.ParseInt(text, 0, T.Bits())
-    *slc = append(*slc, (int16)(n.(int64)))
-    // end int16
+    if text = strings.TrimSpace(text); len(text)>0 {
+      // start int16
+      n, _ = strconv.ParseInt(text, 0, T.Bits())
+      *slc = append(*slc, (int16)(n.(int64)))
+      // end int16
+    }
 	}
 	return nil
 }
@@ -325,10 +333,12 @@ func (slc *sliceInt32Value) Set(s string) error {
 	var l = strings.Split(s, ",")
 
 	for _, text := range l {
-    // start int32
-    n, _ = strconv.ParseInt(text, 0, T.Bits())
-    *slc = append(*slc, (int32)(n.(int64)))
-    // end int32
+    if text = strings.TrimSpace(text); len(text)>0 {
+      // start int32
+      n, _ = strconv.ParseInt(text, 0, T.Bits())
+      *slc = append(*slc, (int32)(n.(int64)))
+      // end int32
+    }
 	}
 	return nil
 }
@@ -397,10 +407,12 @@ func (slc *sliceInt64Value) Set(s string) error {
 	var l = strings.Split(s, ",")
 
 	for _, text := range l {
-    // start int64
-    n, _ = strconv.ParseInt(text, 0, T.Bits())
-    *slc = append(*slc, (int64)(n.(int64)))
-    // end int64
+    if text = strings.TrimSpace(text); len(text)>0 {
+      // start int64
+      n, _ = strconv.ParseInt(text, 0, T.Bits())
+      *slc = append(*slc, (int64)(n.(int64)))
+      // end int64
+    }
 	}
 	return nil
 }
@@ -469,10 +481,12 @@ func (slc *sliceUintValue) Set(s string) error {
 	var l = strings.Split(s, ",")
 
 	for _, text := range l {
-    // start uint
-    n, _ = strconv.ParseUint(text, 0, T.Bits())
-    *slc = append(*slc, (uint)(n.(uint64)))
-    // end uint
+    if text = strings.TrimSpace(text); len(text)>0 {
+      // start uint
+      n, _ = strconv.ParseUint(text, 0, T.Bits())
+      *slc = append(*slc, (uint)(n.(uint64)))
+      // end uint
+    }
 	}
 	return nil
 }
@@ -541,10 +555,12 @@ func (slc *sliceUint8Value) Set(s string) error {
 	var l = strings.Split(s, ",")
 
 	for _, text := range l {
-    // start uint8
-    n, _ = strconv.ParseUint(text, 0, T.Bits())
-    *slc = append(*slc, (uint8)(n.(uint64)))
-    // end uint8
+    if text = strings.TrimSpace(text); len(text)>0 {
+      // start uint8
+      n, _ = strconv.ParseUint(text, 0, T.Bits())
+      *slc = append(*slc, (uint8)(n.(uint64)))
+      // end uint8
+    }
 	}
 	return nil
 }
@@ -613,10 +629,12 @@ func (slc *sliceUint16Value) Set(s string) error {
 	var l = strings.Split(s, ",")
 
 	for _, text := range l {
-    // start uint16
-    n, _ = strconv.ParseUint(text, 0, T.Bits())
-    *slc = append(*slc, (uint16)(n.(uint64)))
-    // end uint16
+    if text = strings.TrimSpace(text); len(text)>0 {
+      // start uint16
+      n, _ = strconv.ParseUint(text, 0, T.Bits())
+      *slc = append(*slc, (uint16)(n.(uint64)))
+      // end uint16
+    }
 	}
 	return nil
 }
@@ -685,10 +703,12 @@ func (slc *sliceUint32Value) Set(s string) error {
 	var l = strings.Split(s, ",")
 
 	for _, text := range l {
-    // start uint32
-    n, _ = strconv.ParseUint(text, 0, T.Bits())
-    *slc = append(*slc, (uint32)(n.(uint64)))
-    // end uint32
+    if text = strings.TrimSpace(text); len(text)>0 {
+      // start uint32
+      n, _ = strconv.ParseUint(text, 0, T.Bits())
+      *slc = append(*slc, (uint32)(n.(uint64)))
+      // end uint32
+    }
 	}
 	return nil
 }
@@ -757,10 +777,12 @@ func (slc *sliceUint64Value) Set(s string) error {
 	var l = strings.Split(s, ",")
 
 	for _, text := range l {
-    // start uint64
-    n, _ = strconv.ParseUint(text, 0, T.Bits())
-    *slc = append(*slc, (uint64)(n.(uint64)))
-    // end uint64
+    if text = strings.TrimSpace(text); len(text)>0 {
+      // start uint64
+      n, _ = strconv.ParseUint(text, 0, T.Bits())
+      *slc = append(*slc, (uint64)(n.(uint64)))
+      // end uint64
+    }
 	}
 	return nil
 }
@@ -829,10 +851,12 @@ func (slc *sliceFloat64Value) Set(s string) error {
 	var l = strings.Split(s, ",")
 
 	for _, text := range l {
-    // start float64
-    n, _ = strconv.ParseFloat(text, T.Bits())
-    *slc = append(*slc, (float64)(n.(float64)))
-    // end float64
+    if text = strings.TrimSpace(text); len(text)>0 {
+      // start float64
+      n, _ = strconv.ParseFloat(text, T.Bits())
+      *slc = append(*slc, (float64)(n.(float64)))
+      // end float64
+    }
 	}
 	return nil
 }
@@ -901,10 +925,12 @@ func (slc *sliceFloat32Value) Set(s string) error {
 	var l = strings.Split(s, ",")
 
 	for _, text := range l {
-    // start float32
-    n, _ = strconv.ParseFloat(text, T.Bits())
-    *slc = append(*slc, (float32)(n.(float64)))
-    // end float32
+    if text = strings.TrimSpace(text); len(text)>0 {
+      // start float32
+      n, _ = strconv.ParseFloat(text, T.Bits())
+      *slc = append(*slc, (float32)(n.(float64)))
+      // end float32
+    }
 	}
 	return nil
 }
@@ -973,10 +999,12 @@ func (slc *sliceBoolValue) Set(s string) error {
 	var l = strings.Split(s, ",")
 
 	for _, text := range l {
-    // start bool
-    n, _ = strconv.ParseBool(text)
-    *slc = append(*slc, (bool)(n.(bool)))
-    // end bool
+    if text = strings.TrimSpace(text); len(text)>0 {
+      // start bool
+      n, _ = strconv.ParseBool(text)
+      *slc = append(*slc, (bool)(n.(bool)))
+      // end bool
+    }
 	}
 	return nil
 }
@@ -1045,9 +1073,11 @@ func (slc *sliceStringValue) Set(s string) error {
 	var l = strings.Split(s, ",")
 
 	for _, text := range l {
-    // start string
-    *slc = append(*slc, text)
-    // end string
+    if text = strings.TrimSpace(text); len(text)>0 {
+      // start string
+      *slc = append(*slc, text)
+      // end string
+    }
 	}
 	return nil
 }

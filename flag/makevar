@@ -29,12 +29,12 @@ bool
 string
 )
 
-makeVarHead="package flag
+makeVarHead='package flag
 
 import (
-	\"log\"
-	\"fmt\"
-	\"time\"
+	"log"
+	"fmt"
+	"time"
 )
 
 // TypeName typename from environment variable TYPENAME 
@@ -46,37 +46,37 @@ import (
 // MakeVar type cast to type with interface matching Set, Value
 func MakeVar(addr interface{}, name, defaultValue, usage string) {
 	switch ptr := addr.(type) {
-"
+'
 
-makeVarTail="	default:
-		// log.Fatalf(\"Unhandled Type %T\n\", ptr)
-		panic(fmt.Sprintf(\"Unhandled Type %v %T\n\", ptr, ptr))
+makeVarTail='	default:
+		// log.Fatalf("Unhandled Type %T\n", ptr)
+		panic(fmt.Sprintf("Unhandled Type %v %T\n", ptr, ptr))
 	}
-}"
+}'
 
 
 
-template="	case *{{.CastTypeName}}:
+template='	case *{{.CastTypeName}}:
 		var varType = (*{{.SetterTypeName}})(ptr)
 		if err := varType.Set(defaultValue); err != nil {
-		   log.Fatalf(\"Error setting {{.SetterTypeName}} %T %v\n\", ptr, err)
+		   log.Fatalf("Error setting {{.SetterTypeName}} %T %v\n", ptr, err)
 		}
-		CommandLine.Var(varType, name, usage)"
+		CommandLine.Var(varType, name, usage)'
 
 # Var defines a flag with the specified name and usage string
-maptemplate="	case *{{.MapCastType}}:
+maptemplate='	case *{{.MapCastType}}:
 		var varType = (*{{.MapSetterTypeNameValue}})(ptr)
 		if err := varType.Set(defaultValue); err != nil {
-		   log.Fatalf(\"Error setting {{.MapSetterTypeNameValue}} %T %v\n\", ptr, err)
+		   log.Fatalf("Error setting {{.MapSetterTypeNameValue}} %T %v\n", ptr, err)
 		}
-		CommandLine.Var(varType, name, usage)"
+		CommandLine.Var(varType, name, usage)'
 
-sliceTemplate="	case *{{.SliceType}}:
+sliceTemplate='	case *{{.SliceType}}:
 		var varType = (*{{.SliceTypeValueName}})(ptr)
 		if err := varType.Set(defaultValue); err != nil {
-		   log.Fatalf(\"Error setting {{.SliceTypeValueName}} %T %v\n\", ptr, err)
+		   log.Fatalf("Error setting {{.SliceTypeValueName}} %T %v\n", ptr, err)
 		}
-		CommandLine.Var(varType, name, usage)"
+		CommandLine.Var(varType, name, usage)'
 
 (
     echo "${makeVarHead}"
@@ -85,8 +85,6 @@ sliceTemplate="	case *{{.SliceType}}:
             export KEYNAME=${key}
             export TYPENAME=${value}
             echo "${maptemplate}" | k8s-template --mappings tmpl/mappings.yaml
-            # k8s-template --template tmpl/mapcase.go.tmpl\
-            #              --mappings tmpl/mappings.yaml
         done
     done
     unset TYPENAME
@@ -95,16 +93,12 @@ sliceTemplate="	case *{{.SliceType}}:
     for name in  $(echo ${names[@]}); do
         export TYPENAME=${name}
         echo "${template}" | k8s-template --mappings tmpl/mappings.yaml
-        # k8s-template --template tmpl/varcase.go.tmpl \
-        #              --mappings tmpl/mappings.yaml
     done
     unset TYPENAME
     unset KEYNAME
     for name in  $(echo ${names[@]}); do
         export TYPENAME=${name}
         echo "${sliceTemplate}" | k8s-template --mappings tmpl/mappings.yaml
-        # k8s-template --template tmpl/varcase.go.tmpl \
-        #              --mappings tmpl/mappings.yaml
     done
     unset TYPENAME
     unset KEYNAME
@@ -126,12 +120,6 @@ import (
 	"strings"
 	"time"
 )
-
-
-var intArray = []int{ 1, 2 }
-var floatArray = []float64{ 2.71828, 3.1415926 }
-var stringArray = []string{ "abc", "def" }
-var uintArray = []uint{ 3,4 }
 
 '
 
@@ -216,7 +204,6 @@ func init(){
 
 '
 (
-# set -x
     echo "${mapTestTemplateHeader}"
     for key in  $(echo ${names[@]}); do
         for value in  $(echo ${names[@]}); do

@@ -9,47 +9,45 @@ import (
 var regExpr = regexp.MustCompile("([^A-Z]+|[A-Z][^A-Z]+|[A-Z]+)")
 
 func init() {
-	// defer tracer.ScopedTrace()()
 	if false {
 		log.Println("")
 	}
 }
 
 // UnderScoreCamelCaseWords split on CamelCase words
-func (info *InfoType) UnderScoreCamelCaseWords() {
-	// defer tracer.ScopedTrace()()
-	words := regExpr.FindAllStringSubmatch(info.Name, -1)
+func (member *MemberType) UnderScoreCamelCaseWords() {
+	words := regExpr.FindAllStringSubmatch(member.Name, -1)
 	if len(words) > 0 {
 		var envSepName []string
 		for _, words := range words {
 			envSepName = append(envSepName, words[0])
 		}
-		info.KeyName = strings.Join(envSepName, "_")
-		if len(info.EnvVarPrefix) > 0 {
-			info.KeyName = strings.ToUpper(info.EnvVarPrefix + "_" + info.KeyName)
+		member.KeyName = strings.Join(envSepName, "_")
+		if len(member.EnvVarPrefix) > 0 {
+			member.KeyName = strings.ToUpper(member.EnvVarPrefix + "_" + member.KeyName)
 		}
 	}
 }
 
 // HyphenateCamelCaseWords converts camel case name string and
 // hyphenates words for flags between words
-func (info *InfoType) HyphenateCamelCaseWords() {
-	prefix := strings.Replace(info.EnvVarPrefix, info.AppName, "", 1)
+func (member *MemberType) HyphenateCamelCaseWords() {
+	prefix := strings.Replace(member.EnvVarPrefix, member.AppName, "", 1)
 	if len(prefix) > 0 && (prefix[0] == '-' || prefix[0] == '_') {
 		prefix = prefix[1:]
 	}
 	if len(prefix) > 0 {
-		info.FlagName = prefix + "-" + Capitalize(info.Name)
+		member.FlagName = prefix + "-" + Capitalize(member.Name)
 	}
 
-	info.FlagName = strings.Replace(info.FlagName, "_", "-", -1)
-	words := regExpr.FindAllStringSubmatch(info.FlagName, -1)
+	member.FlagName = strings.Replace(member.FlagName, "_", "-", -1)
+	words := regExpr.FindAllStringSubmatch(member.FlagName, -1)
 	if len(words) > 0 {
 		var name []string
 		for _, words := range words {
 			name = append(name, strings.ToLower(words[0]))
 		}
-		info.FlagName = strings.Join(name, "-")
+		member.FlagName = strings.Join(name, "-")
 	}
-	info.FlagName = strings.Replace(info.FlagName, "--", "-", -1)
+	member.FlagName = strings.Replace(member.FlagName, "--", "-", -1)
 }

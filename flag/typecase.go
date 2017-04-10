@@ -8,7 +8,7 @@ import (
 
 // TypeName typename from environment variable TYPENAME 
 // KeyName typename from environment variable KEYNAME
-// SetterTypeName typename + Value
+// SetterTypeName "typename" + "Value"
 // MapCastType and MapSetterTypeName from transform of type & key
 // Special case time.Duration
 

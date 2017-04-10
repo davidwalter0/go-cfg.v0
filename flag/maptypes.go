@@ -10,12 +10,6 @@ import (
 )
 
 
-var intArray = []int{ 1, 2 }
-var floatArray = []float64{ 2.71828, 3.1415926 }
-var stringArray = []string{ "abc", "def" }
-var uintArray = []uint{ 3,4 }
-
-
 // mapDurationDurationValue []mapDurationDurationValue
 type mapDurationDurationValue map[time.Duration]time.Duration
 
