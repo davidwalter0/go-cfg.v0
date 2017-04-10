@@ -7,6 +7,10 @@
   env: true
   value: KEYNAME
 
+- name: MapInit
+  env: true
+  value: MAPINIT
+
 - name: Type
   value: '{{.typename|lower|capitalize}}'
   

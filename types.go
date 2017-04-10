@@ -22,7 +22,3 @@ type InfoType struct {
 	Depth        int
 	SubPrefix    string
 }
-
-// AppEnvVarPrefixOverrideName environment variable application lookup
-// prefix override, default prefix is the struct name
-var AppEnvVarPrefixOverrideName = "APP_OVERRIDE_PREFIX"

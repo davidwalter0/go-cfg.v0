@@ -13,6 +13,7 @@ var ErrInvalidSpecification = errors.New("Specification must be a struct pointer
 var ErrInvalidArgPointerRequired = errors.New("Argument must be a pointer")
 var ErrInvalidArgMapParseSpec = errors.New("Map argument requires pairs")
 
+/*
 // TextTypedValMap interface formatted text to map
 func TextTypedValMap(m interface{}, text string) error {
 	if reflect.TypeOf(m).Kind() != reflect.Ptr {
@@ -65,7 +66,7 @@ func TextTypeSlice(m interface{}, text string) error {
 	}
 	return nil
 }
-
+*/
 // TextTypedVal interface text to value
 func TextTypedVal(arg interface{}, textArg ...string) (err error) {
 	var text = ""

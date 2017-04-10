@@ -1,4 +1,7 @@
 #!/bin/bash
+set -o errexit
+set -o pipefail
+set -o nounset
 
 # 1. struct definition
 # 2. parse structure defintion from pointer
@@ -7,7 +10,6 @@
 # 5. assign default value to struct field
 # 6. use environment text if present
 # 7. create flag var
-# 8. 
 
 declare -a names=(
 duration
@@ -125,6 +127,12 @@ import (
 	"time"
 )
 
+
+var intArray = []int{ 1, 2 }
+var floatArray = []float64{ 2.71828, 3.1415926 }
+var stringArray = []string{ "abc", "def" }
+var uintArray = []uint{ 3,4 }
+
 '
 
 sliceTemplateHeader='package flag
@@ -146,10 +154,16 @@ sliceTestTemplateHeader='package flag
 
 import (
 	"fmt"
-	"os"
 	"testing"
 	"reflect"
 )
+
+func init(){
+   if false {
+      fmt.Println("")
+   }
+}
+
 '
 mapTypeTemplate="$(cat tmpl/map.go.tmpl)"
 (
@@ -159,8 +173,6 @@ mapTypeTemplate="$(cat tmpl/map.go.tmpl)"
             export KEYNAME=${key}
             export TYPENAME=${value}
             echo "${mapTypeTemplate}" | k8s-template --mappings tmpl/mappings.yaml
-            # k8s-template --template tmpl/mapcase.go.tmpl\
-            #              --mappings tmpl/mappings.yaml
         done
     done
 ) > maptypes.go
@@ -180,3 +192,66 @@ mapTypeTemplate="$(cat tmpl/map.go.tmpl)"
         echo "${sliceTestTemplate}" | k8s-template --mappings tmpl/mappings.yaml
     done
 ) > type_test.go
+
+declare -a intArray=(-1)
+declare -a uintArray=(2)
+declare -a floatArray=(2.71828)
+declare -a boolArray=(true)
+declare -a stringArray=("one")
+declare -a durationArray=("1h2m3s")
+
+mapTestTypeTemplate="$(cat tmpl/map_test.go.tmpl)"
+mapTestTemplateHeader='package flag
+
+import (
+	"fmt"
+	"testing"
+)
+
+func init(){
+   if false {
+      fmt.Println("")
+   }
+}
+
+'
+(
+# set -x
+    echo "${mapTestTemplateHeader}"
+    for key in  $(echo ${names[@]}); do
+        for value in  $(echo ${names[@]}); do
+            export KEYNAME=${key}
+            export TYPENAME=${value}
+
+            case ${key} in
+                int*) karray=(${intArray[@]});;
+                uint*) karray=(${uintArray[@]});;
+                float*) karray=(${floatArray[@]});;
+                bool*) karray=(${boolArray[@]});;
+                string) karray=(${stringArray[@]});;
+                duration) karray=(${durationArray[@]});;
+            esac
+
+            case ${value} in
+                int*) varray=(${intArray[@]});;
+                uint*) varray=(${uintArray[@]});;
+                float*) varray=(${floatArray[@]});;
+                bool*) varray=(${boolArray[@]});;
+                string) varray=(${stringArray[@]});;
+                duration) varray=(${durationArray[@]});;
+            esac
+            MAP=""
+            for k in $(echo ${karray[@]}); do
+                for v in $(echo ${varray[@]}); do
+                    if [[ -z ${MAP:-} ]]; then
+                        MAP="${k}:${v}"  
+                    else
+                        MAP="${MAP},${k}:${v}"  
+                    fi
+                done
+            done
+            export MAPINIT="${MAP}"
+            echo "${mapTestTypeTemplate}" | k8s-template --mappings tmpl/mappings.yaml
+        done
+    done
+) > maptype_test.go

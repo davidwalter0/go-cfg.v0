@@ -2,40 +2,40 @@ package flag
 
 import (
 	"fmt"
-	"os"
 	"testing"
 	"reflect"
 )
 
+func init(){
+   if false {
+      fmt.Println("")
+   }
+}
+
+
 func TestParseSliceDuration(t *testing.T) {
 	T := reflect.TypeOf(sliceDurationValue{}).Elem()
-  fmt.Printf("%v %T\n", T,T)
 
-	os.Clearenv()
-  fmt.Println("Test for duration SliceDuration")
 	var sliceDuration = new(sliceDurationValue)
 	Var(sliceDuration, "sliceDuration", "use SliceDuration")
   switch T.Kind() {
   case reflect.Int8, reflect.Int16, reflect.Int, reflect.Int32, reflect.Int64:
-    sliceDuration.Set("1,2,3")
+    sliceDuration.Set("1h2m3s,720h4m3s")
   case reflect.Uint8, reflect.Uint16, reflect.Uint, reflect.Uint32, reflect.Uint64:
     sliceDuration.Set("1,2,3")
   case reflect.Float32, reflect.Float64:
     sliceDuration.Set("1.1,2.2,3.3")
   case reflect.Bool:
     sliceDuration.Set("false,true")
+  case reflect.String:
+    sliceDuration.Set("a,b,c,false,true,another string value")
   }
-	fmt.Printf("%v %T\n", *sliceDuration, *sliceDuration)
-	// Parse()
-	// Usage()
+	// fmt.Printf("duration SliceDuration %v\n", *sliceDuration)
 }
 
 func TestParseSliceInt(t *testing.T) {
 	T := reflect.TypeOf(sliceIntValue{}).Elem()
-  fmt.Printf("%v %T\n", T,T)
 
-	os.Clearenv()
-  fmt.Println("Test for int SliceInt")
 	var sliceInt = new(sliceIntValue)
 	Var(sliceInt, "sliceInt", "use SliceInt")
   switch T.Kind() {
@@ -47,18 +47,15 @@ func TestParseSliceInt(t *testing.T) {
     sliceInt.Set("1.1,2.2,3.3")
   case reflect.Bool:
     sliceInt.Set("false,true")
+  case reflect.String:
+    sliceInt.Set("a,b,c,false,true,another string value")
   }
-	fmt.Printf("%v %T\n", *sliceInt, *sliceInt)
-	// Parse()
-	// Usage()
+	// fmt.Printf("int SliceInt %v\n", *sliceInt)
 }
 
 func TestParseSliceInt8(t *testing.T) {
 	T := reflect.TypeOf(sliceInt8Value{}).Elem()
-  fmt.Printf("%v %T\n", T,T)
 
-	os.Clearenv()
-  fmt.Println("Test for int8 SliceInt8")
 	var sliceInt8 = new(sliceInt8Value)
 	Var(sliceInt8, "sliceInt8", "use SliceInt8")
   switch T.Kind() {
@@ -70,18 +67,15 @@ func TestParseSliceInt8(t *testing.T) {
     sliceInt8.Set("1.1,2.2,3.3")
   case reflect.Bool:
     sliceInt8.Set("false,true")
+  case reflect.String:
+    sliceInt8.Set("a,b,c,false,true,another string value")
   }
-	fmt.Printf("%v %T\n", *sliceInt8, *sliceInt8)
-	// Parse()
-	// Usage()
+	// fmt.Printf("int8 SliceInt8 %v\n", *sliceInt8)
 }
 
 func TestParseSliceInt16(t *testing.T) {
 	T := reflect.TypeOf(sliceInt16Value{}).Elem()
-  fmt.Printf("%v %T\n", T,T)
 
-	os.Clearenv()
-  fmt.Println("Test for int16 SliceInt16")
 	var sliceInt16 = new(sliceInt16Value)
 	Var(sliceInt16, "sliceInt16", "use SliceInt16")
   switch T.Kind() {
@@ -93,18 +87,15 @@ func TestParseSliceInt16(t *testing.T) {
     sliceInt16.Set("1.1,2.2,3.3")
   case reflect.Bool:
     sliceInt16.Set("false,true")
+  case reflect.String:
+    sliceInt16.Set("a,b,c,false,true,another string value")
   }
-	fmt.Printf("%v %T\n", *sliceInt16, *sliceInt16)
-	// Parse()
-	// Usage()
+	// fmt.Printf("int16 SliceInt16 %v\n", *sliceInt16)
 }
 
 func TestParseSliceInt32(t *testing.T) {
 	T := reflect.TypeOf(sliceInt32Value{}).Elem()
-  fmt.Printf("%v %T\n", T,T)
 
-	os.Clearenv()
-  fmt.Println("Test for int32 SliceInt32")
 	var sliceInt32 = new(sliceInt32Value)
 	Var(sliceInt32, "sliceInt32", "use SliceInt32")
   switch T.Kind() {
@@ -116,18 +107,15 @@ func TestParseSliceInt32(t *testing.T) {
     sliceInt32.Set("1.1,2.2,3.3")
   case reflect.Bool:
     sliceInt32.Set("false,true")
+  case reflect.String:
+    sliceInt32.Set("a,b,c,false,true,another string value")
   }
-	fmt.Printf("%v %T\n", *sliceInt32, *sliceInt32)
-	// Parse()
-	// Usage()
+	// fmt.Printf("int32 SliceInt32 %v\n", *sliceInt32)
 }
 
 func TestParseSliceInt64(t *testing.T) {
 	T := reflect.TypeOf(sliceInt64Value{}).Elem()
-  fmt.Printf("%v %T\n", T,T)
 
-	os.Clearenv()
-  fmt.Println("Test for int64 SliceInt64")
 	var sliceInt64 = new(sliceInt64Value)
 	Var(sliceInt64, "sliceInt64", "use SliceInt64")
   switch T.Kind() {
@@ -139,18 +127,15 @@ func TestParseSliceInt64(t *testing.T) {
     sliceInt64.Set("1.1,2.2,3.3")
   case reflect.Bool:
     sliceInt64.Set("false,true")
+  case reflect.String:
+    sliceInt64.Set("a,b,c,false,true,another string value")
   }
-	fmt.Printf("%v %T\n", *sliceInt64, *sliceInt64)
-	// Parse()
-	// Usage()
+	// fmt.Printf("int64 SliceInt64 %v\n", *sliceInt64)
 }
 
 func TestParseSliceUint(t *testing.T) {
 	T := reflect.TypeOf(sliceUintValue{}).Elem()
-  fmt.Printf("%v %T\n", T,T)
 
-	os.Clearenv()
-  fmt.Println("Test for uint SliceUint")
 	var sliceUint = new(sliceUintValue)
 	Var(sliceUint, "sliceUint", "use SliceUint")
   switch T.Kind() {
@@ -162,18 +147,15 @@ func TestParseSliceUint(t *testing.T) {
     sliceUint.Set("1.1,2.2,3.3")
   case reflect.Bool:
     sliceUint.Set("false,true")
+  case reflect.String:
+    sliceUint.Set("a,b,c,false,true,another string value")
   }
-	fmt.Printf("%v %T\n", *sliceUint, *sliceUint)
-	// Parse()
-	// Usage()
+	// fmt.Printf("uint SliceUint %v\n", *sliceUint)
 }
 
 func TestParseSliceUint8(t *testing.T) {
 	T := reflect.TypeOf(sliceUint8Value{}).Elem()
-  fmt.Printf("%v %T\n", T,T)
 
-	os.Clearenv()
-  fmt.Println("Test for uint8 SliceUint8")
 	var sliceUint8 = new(sliceUint8Value)
 	Var(sliceUint8, "sliceUint8", "use SliceUint8")
   switch T.Kind() {
@@ -185,18 +167,15 @@ func TestParseSliceUint8(t *testing.T) {
     sliceUint8.Set("1.1,2.2,3.3")
   case reflect.Bool:
     sliceUint8.Set("false,true")
+  case reflect.String:
+    sliceUint8.Set("a,b,c,false,true,another string value")
   }
-	fmt.Printf("%v %T\n", *sliceUint8, *sliceUint8)
-	// Parse()
-	// Usage()
+	// fmt.Printf("uint8 SliceUint8 %v\n", *sliceUint8)
 }
 
 func TestParseSliceUint16(t *testing.T) {
 	T := reflect.TypeOf(sliceUint16Value{}).Elem()
-  fmt.Printf("%v %T\n", T,T)
 
-	os.Clearenv()
-  fmt.Println("Test for uint16 SliceUint16")
 	var sliceUint16 = new(sliceUint16Value)
 	Var(sliceUint16, "sliceUint16", "use SliceUint16")
   switch T.Kind() {
@@ -208,18 +187,15 @@ func TestParseSliceUint16(t *testing.T) {
     sliceUint16.Set("1.1,2.2,3.3")
   case reflect.Bool:
     sliceUint16.Set("false,true")
+  case reflect.String:
+    sliceUint16.Set("a,b,c,false,true,another string value")
   }
-	fmt.Printf("%v %T\n", *sliceUint16, *sliceUint16)
-	// Parse()
-	// Usage()
+	// fmt.Printf("uint16 SliceUint16 %v\n", *sliceUint16)
 }
 
 func TestParseSliceUint32(t *testing.T) {
 	T := reflect.TypeOf(sliceUint32Value{}).Elem()
-  fmt.Printf("%v %T\n", T,T)
 
-	os.Clearenv()
-  fmt.Println("Test for uint32 SliceUint32")
 	var sliceUint32 = new(sliceUint32Value)
 	Var(sliceUint32, "sliceUint32", "use SliceUint32")
   switch T.Kind() {
@@ -231,18 +207,15 @@ func TestParseSliceUint32(t *testing.T) {
     sliceUint32.Set("1.1,2.2,3.3")
   case reflect.Bool:
     sliceUint32.Set("false,true")
+  case reflect.String:
+    sliceUint32.Set("a,b,c,false,true,another string value")
   }
-	fmt.Printf("%v %T\n", *sliceUint32, *sliceUint32)
-	// Parse()
-	// Usage()
+	// fmt.Printf("uint32 SliceUint32 %v\n", *sliceUint32)
 }
 
 func TestParseSliceUint64(t *testing.T) {
 	T := reflect.TypeOf(sliceUint64Value{}).Elem()
-  fmt.Printf("%v %T\n", T,T)
 
-	os.Clearenv()
-  fmt.Println("Test for uint64 SliceUint64")
 	var sliceUint64 = new(sliceUint64Value)
 	Var(sliceUint64, "sliceUint64", "use SliceUint64")
   switch T.Kind() {
@@ -254,18 +227,15 @@ func TestParseSliceUint64(t *testing.T) {
     sliceUint64.Set("1.1,2.2,3.3")
   case reflect.Bool:
     sliceUint64.Set("false,true")
+  case reflect.String:
+    sliceUint64.Set("a,b,c,false,true,another string value")
   }
-	fmt.Printf("%v %T\n", *sliceUint64, *sliceUint64)
-	// Parse()
-	// Usage()
+	// fmt.Printf("uint64 SliceUint64 %v\n", *sliceUint64)
 }
 
 func TestParseSliceFloat64(t *testing.T) {
 	T := reflect.TypeOf(sliceFloat64Value{}).Elem()
-  fmt.Printf("%v %T\n", T,T)
 
-	os.Clearenv()
-  fmt.Println("Test for float64 SliceFloat64")
 	var sliceFloat64 = new(sliceFloat64Value)
 	Var(sliceFloat64, "sliceFloat64", "use SliceFloat64")
   switch T.Kind() {
@@ -277,18 +247,15 @@ func TestParseSliceFloat64(t *testing.T) {
     sliceFloat64.Set("1.1,2.2,3.3")
   case reflect.Bool:
     sliceFloat64.Set("false,true")
+  case reflect.String:
+    sliceFloat64.Set("a,b,c,false,true,another string value")
   }
-	fmt.Printf("%v %T\n", *sliceFloat64, *sliceFloat64)
-	// Parse()
-	// Usage()
+	// fmt.Printf("float64 SliceFloat64 %v\n", *sliceFloat64)
 }
 
 func TestParseSliceFloat32(t *testing.T) {
 	T := reflect.TypeOf(sliceFloat32Value{}).Elem()
-  fmt.Printf("%v %T\n", T,T)
 
-	os.Clearenv()
-  fmt.Println("Test for float32 SliceFloat32")
 	var sliceFloat32 = new(sliceFloat32Value)
 	Var(sliceFloat32, "sliceFloat32", "use SliceFloat32")
   switch T.Kind() {
@@ -300,18 +267,15 @@ func TestParseSliceFloat32(t *testing.T) {
     sliceFloat32.Set("1.1,2.2,3.3")
   case reflect.Bool:
     sliceFloat32.Set("false,true")
+  case reflect.String:
+    sliceFloat32.Set("a,b,c,false,true,another string value")
   }
-	fmt.Printf("%v %T\n", *sliceFloat32, *sliceFloat32)
-	// Parse()
-	// Usage()
+	// fmt.Printf("float32 SliceFloat32 %v\n", *sliceFloat32)
 }
 
 func TestParseSliceBool(t *testing.T) {
 	T := reflect.TypeOf(sliceBoolValue{}).Elem()
-  fmt.Printf("%v %T\n", T,T)
 
-	os.Clearenv()
-  fmt.Println("Test for bool SliceBool")
 	var sliceBool = new(sliceBoolValue)
 	Var(sliceBool, "sliceBool", "use SliceBool")
   switch T.Kind() {
@@ -323,18 +287,15 @@ func TestParseSliceBool(t *testing.T) {
     sliceBool.Set("1.1,2.2,3.3")
   case reflect.Bool:
     sliceBool.Set("false,true")
+  case reflect.String:
+    sliceBool.Set("a,b,c,false,true,another string value")
   }
-	fmt.Printf("%v %T\n", *sliceBool, *sliceBool)
-	// Parse()
-	// Usage()
+	// fmt.Printf("bool SliceBool %v\n", *sliceBool)
 }
 
 func TestParseSliceString(t *testing.T) {
 	T := reflect.TypeOf(sliceStringValue{}).Elem()
-  fmt.Printf("%v %T\n", T,T)
 
-	os.Clearenv()
-  fmt.Println("Test for string SliceString")
 	var sliceString = new(sliceStringValue)
 	Var(sliceString, "sliceString", "use SliceString")
   switch T.Kind() {
@@ -346,9 +307,9 @@ func TestParseSliceString(t *testing.T) {
     sliceString.Set("1.1,2.2,3.3")
   case reflect.Bool:
     sliceString.Set("false,true")
+  case reflect.String:
+    sliceString.Set("a,b,c,false,true,another string value")
   }
-	fmt.Printf("%v %T\n", *sliceString, *sliceString)
-	// Parse()
-	// Usage()
+	// fmt.Printf("string SliceString %v\n", *sliceString)
 }
 

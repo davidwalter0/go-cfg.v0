@@ -10,6 +10,12 @@ import (
 )
 
 
+var intArray = []int{ 1, 2 }
+var floatArray = []float64{ 2.71828, 3.1415926 }
+var stringArray = []string{ "abc", "def" }
+var uintArray = []uint{ 3,4 }
+
+
 // mapDurationDurationValue []mapDurationDurationValue
 type mapDurationDurationValue map[time.Duration]time.Duration
 
@@ -23,7 +29,6 @@ func newmapDurationDurationValue(val mapDurationDurationValue,
 
 // Set a map after parsing a string
 func (slc *mapDurationDurationValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -82,7 +87,6 @@ func newmapDurationIntValue(val mapDurationIntValue,
 
 // Set a map after parsing a string
 func (slc *mapDurationIntValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -141,7 +145,6 @@ func newmapDurationInt8Value(val mapDurationInt8Value,
 
 // Set a map after parsing a string
 func (slc *mapDurationInt8Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -200,7 +203,6 @@ func newmapDurationInt16Value(val mapDurationInt16Value,
 
 // Set a map after parsing a string
 func (slc *mapDurationInt16Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -259,7 +261,6 @@ func newmapDurationInt32Value(val mapDurationInt32Value,
 
 // Set a map after parsing a string
 func (slc *mapDurationInt32Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -318,7 +319,6 @@ func newmapDurationInt64Value(val mapDurationInt64Value,
 
 // Set a map after parsing a string
 func (slc *mapDurationInt64Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -377,7 +377,6 @@ func newmapDurationUintValue(val mapDurationUintValue,
 
 // Set a map after parsing a string
 func (slc *mapDurationUintValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -436,7 +435,6 @@ func newmapDurationUint8Value(val mapDurationUint8Value,
 
 // Set a map after parsing a string
 func (slc *mapDurationUint8Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -495,7 +493,6 @@ func newmapDurationUint16Value(val mapDurationUint16Value,
 
 // Set a map after parsing a string
 func (slc *mapDurationUint16Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -554,7 +551,6 @@ func newmapDurationUint32Value(val mapDurationUint32Value,
 
 // Set a map after parsing a string
 func (slc *mapDurationUint32Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -613,7 +609,6 @@ func newmapDurationUint64Value(val mapDurationUint64Value,
 
 // Set a map after parsing a string
 func (slc *mapDurationUint64Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -672,7 +667,6 @@ func newmapDurationFloat64Value(val mapDurationFloat64Value,
 
 // Set a map after parsing a string
 func (slc *mapDurationFloat64Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -731,7 +725,6 @@ func newmapDurationFloat32Value(val mapDurationFloat32Value,
 
 // Set a map after parsing a string
 func (slc *mapDurationFloat32Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -790,7 +783,6 @@ func newmapDurationBoolValue(val mapDurationBoolValue,
 
 // Set a map after parsing a string
 func (slc *mapDurationBoolValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -849,7 +841,6 @@ func newmapDurationStringValue(val mapDurationStringValue,
 
 // Set a map after parsing a string
 func (slc *mapDurationStringValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -908,7 +899,6 @@ func newmapIntDurationValue(val mapIntDurationValue,
 
 // Set a map after parsing a string
 func (slc *mapIntDurationValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -967,7 +957,6 @@ func newmapIntIntValue(val mapIntIntValue,
 
 // Set a map after parsing a string
 func (slc *mapIntIntValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -1026,7 +1015,6 @@ func newmapIntInt8Value(val mapIntInt8Value,
 
 // Set a map after parsing a string
 func (slc *mapIntInt8Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -1085,7 +1073,6 @@ func newmapIntInt16Value(val mapIntInt16Value,
 
 // Set a map after parsing a string
 func (slc *mapIntInt16Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -1144,7 +1131,6 @@ func newmapIntInt32Value(val mapIntInt32Value,
 
 // Set a map after parsing a string
 func (slc *mapIntInt32Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -1203,7 +1189,6 @@ func newmapIntInt64Value(val mapIntInt64Value,
 
 // Set a map after parsing a string
 func (slc *mapIntInt64Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -1262,7 +1247,6 @@ func newmapIntUintValue(val mapIntUintValue,
 
 // Set a map after parsing a string
 func (slc *mapIntUintValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -1321,7 +1305,6 @@ func newmapIntUint8Value(val mapIntUint8Value,
 
 // Set a map after parsing a string
 func (slc *mapIntUint8Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -1380,7 +1363,6 @@ func newmapIntUint16Value(val mapIntUint16Value,
 
 // Set a map after parsing a string
 func (slc *mapIntUint16Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -1439,7 +1421,6 @@ func newmapIntUint32Value(val mapIntUint32Value,
 
 // Set a map after parsing a string
 func (slc *mapIntUint32Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -1498,7 +1479,6 @@ func newmapIntUint64Value(val mapIntUint64Value,
 
 // Set a map after parsing a string
 func (slc *mapIntUint64Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -1557,7 +1537,6 @@ func newmapIntFloat64Value(val mapIntFloat64Value,
 
 // Set a map after parsing a string
 func (slc *mapIntFloat64Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -1616,7 +1595,6 @@ func newmapIntFloat32Value(val mapIntFloat32Value,
 
 // Set a map after parsing a string
 func (slc *mapIntFloat32Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -1675,7 +1653,6 @@ func newmapIntBoolValue(val mapIntBoolValue,
 
 // Set a map after parsing a string
 func (slc *mapIntBoolValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -1734,7 +1711,6 @@ func newmapIntStringValue(val mapIntStringValue,
 
 // Set a map after parsing a string
 func (slc *mapIntStringValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -1793,7 +1769,6 @@ func newmapInt8DurationValue(val mapInt8DurationValue,
 
 // Set a map after parsing a string
 func (slc *mapInt8DurationValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -1852,7 +1827,6 @@ func newmapInt8IntValue(val mapInt8IntValue,
 
 // Set a map after parsing a string
 func (slc *mapInt8IntValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -1911,7 +1885,6 @@ func newmapInt8Int8Value(val mapInt8Int8Value,
 
 // Set a map after parsing a string
 func (slc *mapInt8Int8Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -1970,7 +1943,6 @@ func newmapInt8Int16Value(val mapInt8Int16Value,
 
 // Set a map after parsing a string
 func (slc *mapInt8Int16Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -2029,7 +2001,6 @@ func newmapInt8Int32Value(val mapInt8Int32Value,
 
 // Set a map after parsing a string
 func (slc *mapInt8Int32Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -2088,7 +2059,6 @@ func newmapInt8Int64Value(val mapInt8Int64Value,
 
 // Set a map after parsing a string
 func (slc *mapInt8Int64Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -2147,7 +2117,6 @@ func newmapInt8UintValue(val mapInt8UintValue,
 
 // Set a map after parsing a string
 func (slc *mapInt8UintValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -2206,7 +2175,6 @@ func newmapInt8Uint8Value(val mapInt8Uint8Value,
 
 // Set a map after parsing a string
 func (slc *mapInt8Uint8Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -2265,7 +2233,6 @@ func newmapInt8Uint16Value(val mapInt8Uint16Value,
 
 // Set a map after parsing a string
 func (slc *mapInt8Uint16Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -2324,7 +2291,6 @@ func newmapInt8Uint32Value(val mapInt8Uint32Value,
 
 // Set a map after parsing a string
 func (slc *mapInt8Uint32Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -2383,7 +2349,6 @@ func newmapInt8Uint64Value(val mapInt8Uint64Value,
 
 // Set a map after parsing a string
 func (slc *mapInt8Uint64Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -2442,7 +2407,6 @@ func newmapInt8Float64Value(val mapInt8Float64Value,
 
 // Set a map after parsing a string
 func (slc *mapInt8Float64Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -2501,7 +2465,6 @@ func newmapInt8Float32Value(val mapInt8Float32Value,
 
 // Set a map after parsing a string
 func (slc *mapInt8Float32Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -2560,7 +2523,6 @@ func newmapInt8BoolValue(val mapInt8BoolValue,
 
 // Set a map after parsing a string
 func (slc *mapInt8BoolValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -2619,7 +2581,6 @@ func newmapInt8StringValue(val mapInt8StringValue,
 
 // Set a map after parsing a string
 func (slc *mapInt8StringValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -2678,7 +2639,6 @@ func newmapInt16DurationValue(val mapInt16DurationValue,
 
 // Set a map after parsing a string
 func (slc *mapInt16DurationValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -2737,7 +2697,6 @@ func newmapInt16IntValue(val mapInt16IntValue,
 
 // Set a map after parsing a string
 func (slc *mapInt16IntValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -2796,7 +2755,6 @@ func newmapInt16Int8Value(val mapInt16Int8Value,
 
 // Set a map after parsing a string
 func (slc *mapInt16Int8Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -2855,7 +2813,6 @@ func newmapInt16Int16Value(val mapInt16Int16Value,
 
 // Set a map after parsing a string
 func (slc *mapInt16Int16Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -2914,7 +2871,6 @@ func newmapInt16Int32Value(val mapInt16Int32Value,
 
 // Set a map after parsing a string
 func (slc *mapInt16Int32Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -2973,7 +2929,6 @@ func newmapInt16Int64Value(val mapInt16Int64Value,
 
 // Set a map after parsing a string
 func (slc *mapInt16Int64Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -3032,7 +2987,6 @@ func newmapInt16UintValue(val mapInt16UintValue,
 
 // Set a map after parsing a string
 func (slc *mapInt16UintValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -3091,7 +3045,6 @@ func newmapInt16Uint8Value(val mapInt16Uint8Value,
 
 // Set a map after parsing a string
 func (slc *mapInt16Uint8Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -3150,7 +3103,6 @@ func newmapInt16Uint16Value(val mapInt16Uint16Value,
 
 // Set a map after parsing a string
 func (slc *mapInt16Uint16Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -3209,7 +3161,6 @@ func newmapInt16Uint32Value(val mapInt16Uint32Value,
 
 // Set a map after parsing a string
 func (slc *mapInt16Uint32Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -3268,7 +3219,6 @@ func newmapInt16Uint64Value(val mapInt16Uint64Value,
 
 // Set a map after parsing a string
 func (slc *mapInt16Uint64Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -3327,7 +3277,6 @@ func newmapInt16Float64Value(val mapInt16Float64Value,
 
 // Set a map after parsing a string
 func (slc *mapInt16Float64Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -3386,7 +3335,6 @@ func newmapInt16Float32Value(val mapInt16Float32Value,
 
 // Set a map after parsing a string
 func (slc *mapInt16Float32Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -3445,7 +3393,6 @@ func newmapInt16BoolValue(val mapInt16BoolValue,
 
 // Set a map after parsing a string
 func (slc *mapInt16BoolValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -3504,7 +3451,6 @@ func newmapInt16StringValue(val mapInt16StringValue,
 
 // Set a map after parsing a string
 func (slc *mapInt16StringValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -3563,7 +3509,6 @@ func newmapInt32DurationValue(val mapInt32DurationValue,
 
 // Set a map after parsing a string
 func (slc *mapInt32DurationValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -3622,7 +3567,6 @@ func newmapInt32IntValue(val mapInt32IntValue,
 
 // Set a map after parsing a string
 func (slc *mapInt32IntValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -3681,7 +3625,6 @@ func newmapInt32Int8Value(val mapInt32Int8Value,
 
 // Set a map after parsing a string
 func (slc *mapInt32Int8Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -3740,7 +3683,6 @@ func newmapInt32Int16Value(val mapInt32Int16Value,
 
 // Set a map after parsing a string
 func (slc *mapInt32Int16Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -3799,7 +3741,6 @@ func newmapInt32Int32Value(val mapInt32Int32Value,
 
 // Set a map after parsing a string
 func (slc *mapInt32Int32Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -3858,7 +3799,6 @@ func newmapInt32Int64Value(val mapInt32Int64Value,
 
 // Set a map after parsing a string
 func (slc *mapInt32Int64Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -3917,7 +3857,6 @@ func newmapInt32UintValue(val mapInt32UintValue,
 
 // Set a map after parsing a string
 func (slc *mapInt32UintValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -3976,7 +3915,6 @@ func newmapInt32Uint8Value(val mapInt32Uint8Value,
 
 // Set a map after parsing a string
 func (slc *mapInt32Uint8Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -4035,7 +3973,6 @@ func newmapInt32Uint16Value(val mapInt32Uint16Value,
 
 // Set a map after parsing a string
 func (slc *mapInt32Uint16Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -4094,7 +4031,6 @@ func newmapInt32Uint32Value(val mapInt32Uint32Value,
 
 // Set a map after parsing a string
 func (slc *mapInt32Uint32Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -4153,7 +4089,6 @@ func newmapInt32Uint64Value(val mapInt32Uint64Value,
 
 // Set a map after parsing a string
 func (slc *mapInt32Uint64Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -4212,7 +4147,6 @@ func newmapInt32Float64Value(val mapInt32Float64Value,
 
 // Set a map after parsing a string
 func (slc *mapInt32Float64Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -4271,7 +4205,6 @@ func newmapInt32Float32Value(val mapInt32Float32Value,
 
 // Set a map after parsing a string
 func (slc *mapInt32Float32Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -4330,7 +4263,6 @@ func newmapInt32BoolValue(val mapInt32BoolValue,
 
 // Set a map after parsing a string
 func (slc *mapInt32BoolValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -4389,7 +4321,6 @@ func newmapInt32StringValue(val mapInt32StringValue,
 
 // Set a map after parsing a string
 func (slc *mapInt32StringValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -4448,7 +4379,6 @@ func newmapInt64DurationValue(val mapInt64DurationValue,
 
 // Set a map after parsing a string
 func (slc *mapInt64DurationValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -4507,7 +4437,6 @@ func newmapInt64IntValue(val mapInt64IntValue,
 
 // Set a map after parsing a string
 func (slc *mapInt64IntValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -4566,7 +4495,6 @@ func newmapInt64Int8Value(val mapInt64Int8Value,
 
 // Set a map after parsing a string
 func (slc *mapInt64Int8Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -4625,7 +4553,6 @@ func newmapInt64Int16Value(val mapInt64Int16Value,
 
 // Set a map after parsing a string
 func (slc *mapInt64Int16Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -4684,7 +4611,6 @@ func newmapInt64Int32Value(val mapInt64Int32Value,
 
 // Set a map after parsing a string
 func (slc *mapInt64Int32Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -4743,7 +4669,6 @@ func newmapInt64Int64Value(val mapInt64Int64Value,
 
 // Set a map after parsing a string
 func (slc *mapInt64Int64Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -4802,7 +4727,6 @@ func newmapInt64UintValue(val mapInt64UintValue,
 
 // Set a map after parsing a string
 func (slc *mapInt64UintValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -4861,7 +4785,6 @@ func newmapInt64Uint8Value(val mapInt64Uint8Value,
 
 // Set a map after parsing a string
 func (slc *mapInt64Uint8Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -4920,7 +4843,6 @@ func newmapInt64Uint16Value(val mapInt64Uint16Value,
 
 // Set a map after parsing a string
 func (slc *mapInt64Uint16Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -4979,7 +4901,6 @@ func newmapInt64Uint32Value(val mapInt64Uint32Value,
 
 // Set a map after parsing a string
 func (slc *mapInt64Uint32Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -5038,7 +4959,6 @@ func newmapInt64Uint64Value(val mapInt64Uint64Value,
 
 // Set a map after parsing a string
 func (slc *mapInt64Uint64Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -5097,7 +5017,6 @@ func newmapInt64Float64Value(val mapInt64Float64Value,
 
 // Set a map after parsing a string
 func (slc *mapInt64Float64Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -5156,7 +5075,6 @@ func newmapInt64Float32Value(val mapInt64Float32Value,
 
 // Set a map after parsing a string
 func (slc *mapInt64Float32Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -5215,7 +5133,6 @@ func newmapInt64BoolValue(val mapInt64BoolValue,
 
 // Set a map after parsing a string
 func (slc *mapInt64BoolValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -5274,7 +5191,6 @@ func newmapInt64StringValue(val mapInt64StringValue,
 
 // Set a map after parsing a string
 func (slc *mapInt64StringValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -5333,7 +5249,6 @@ func newmapUintDurationValue(val mapUintDurationValue,
 
 // Set a map after parsing a string
 func (slc *mapUintDurationValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -5392,7 +5307,6 @@ func newmapUintIntValue(val mapUintIntValue,
 
 // Set a map after parsing a string
 func (slc *mapUintIntValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -5451,7 +5365,6 @@ func newmapUintInt8Value(val mapUintInt8Value,
 
 // Set a map after parsing a string
 func (slc *mapUintInt8Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -5510,7 +5423,6 @@ func newmapUintInt16Value(val mapUintInt16Value,
 
 // Set a map after parsing a string
 func (slc *mapUintInt16Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -5569,7 +5481,6 @@ func newmapUintInt32Value(val mapUintInt32Value,
 
 // Set a map after parsing a string
 func (slc *mapUintInt32Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -5628,7 +5539,6 @@ func newmapUintInt64Value(val mapUintInt64Value,
 
 // Set a map after parsing a string
 func (slc *mapUintInt64Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -5687,7 +5597,6 @@ func newmapUintUintValue(val mapUintUintValue,
 
 // Set a map after parsing a string
 func (slc *mapUintUintValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -5746,7 +5655,6 @@ func newmapUintUint8Value(val mapUintUint8Value,
 
 // Set a map after parsing a string
 func (slc *mapUintUint8Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -5805,7 +5713,6 @@ func newmapUintUint16Value(val mapUintUint16Value,
 
 // Set a map after parsing a string
 func (slc *mapUintUint16Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -5864,7 +5771,6 @@ func newmapUintUint32Value(val mapUintUint32Value,
 
 // Set a map after parsing a string
 func (slc *mapUintUint32Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -5923,7 +5829,6 @@ func newmapUintUint64Value(val mapUintUint64Value,
 
 // Set a map after parsing a string
 func (slc *mapUintUint64Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -5982,7 +5887,6 @@ func newmapUintFloat64Value(val mapUintFloat64Value,
 
 // Set a map after parsing a string
 func (slc *mapUintFloat64Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -6041,7 +5945,6 @@ func newmapUintFloat32Value(val mapUintFloat32Value,
 
 // Set a map after parsing a string
 func (slc *mapUintFloat32Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -6100,7 +6003,6 @@ func newmapUintBoolValue(val mapUintBoolValue,
 
 // Set a map after parsing a string
 func (slc *mapUintBoolValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -6159,7 +6061,6 @@ func newmapUintStringValue(val mapUintStringValue,
 
 // Set a map after parsing a string
 func (slc *mapUintStringValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -6218,7 +6119,6 @@ func newmapUint8DurationValue(val mapUint8DurationValue,
 
 // Set a map after parsing a string
 func (slc *mapUint8DurationValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -6277,7 +6177,6 @@ func newmapUint8IntValue(val mapUint8IntValue,
 
 // Set a map after parsing a string
 func (slc *mapUint8IntValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -6336,7 +6235,6 @@ func newmapUint8Int8Value(val mapUint8Int8Value,
 
 // Set a map after parsing a string
 func (slc *mapUint8Int8Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -6395,7 +6293,6 @@ func newmapUint8Int16Value(val mapUint8Int16Value,
 
 // Set a map after parsing a string
 func (slc *mapUint8Int16Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -6454,7 +6351,6 @@ func newmapUint8Int32Value(val mapUint8Int32Value,
 
 // Set a map after parsing a string
 func (slc *mapUint8Int32Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -6513,7 +6409,6 @@ func newmapUint8Int64Value(val mapUint8Int64Value,
 
 // Set a map after parsing a string
 func (slc *mapUint8Int64Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -6572,7 +6467,6 @@ func newmapUint8UintValue(val mapUint8UintValue,
 
 // Set a map after parsing a string
 func (slc *mapUint8UintValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -6631,7 +6525,6 @@ func newmapUint8Uint8Value(val mapUint8Uint8Value,
 
 // Set a map after parsing a string
 func (slc *mapUint8Uint8Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -6690,7 +6583,6 @@ func newmapUint8Uint16Value(val mapUint8Uint16Value,
 
 // Set a map after parsing a string
 func (slc *mapUint8Uint16Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -6749,7 +6641,6 @@ func newmapUint8Uint32Value(val mapUint8Uint32Value,
 
 // Set a map after parsing a string
 func (slc *mapUint8Uint32Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -6808,7 +6699,6 @@ func newmapUint8Uint64Value(val mapUint8Uint64Value,
 
 // Set a map after parsing a string
 func (slc *mapUint8Uint64Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -6867,7 +6757,6 @@ func newmapUint8Float64Value(val mapUint8Float64Value,
 
 // Set a map after parsing a string
 func (slc *mapUint8Float64Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -6926,7 +6815,6 @@ func newmapUint8Float32Value(val mapUint8Float32Value,
 
 // Set a map after parsing a string
 func (slc *mapUint8Float32Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -6985,7 +6873,6 @@ func newmapUint8BoolValue(val mapUint8BoolValue,
 
 // Set a map after parsing a string
 func (slc *mapUint8BoolValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -7044,7 +6931,6 @@ func newmapUint8StringValue(val mapUint8StringValue,
 
 // Set a map after parsing a string
 func (slc *mapUint8StringValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -7103,7 +6989,6 @@ func newmapUint16DurationValue(val mapUint16DurationValue,
 
 // Set a map after parsing a string
 func (slc *mapUint16DurationValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -7162,7 +7047,6 @@ func newmapUint16IntValue(val mapUint16IntValue,
 
 // Set a map after parsing a string
 func (slc *mapUint16IntValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -7221,7 +7105,6 @@ func newmapUint16Int8Value(val mapUint16Int8Value,
 
 // Set a map after parsing a string
 func (slc *mapUint16Int8Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -7280,7 +7163,6 @@ func newmapUint16Int16Value(val mapUint16Int16Value,
 
 // Set a map after parsing a string
 func (slc *mapUint16Int16Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -7339,7 +7221,6 @@ func newmapUint16Int32Value(val mapUint16Int32Value,
 
 // Set a map after parsing a string
 func (slc *mapUint16Int32Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -7398,7 +7279,6 @@ func newmapUint16Int64Value(val mapUint16Int64Value,
 
 // Set a map after parsing a string
 func (slc *mapUint16Int64Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -7457,7 +7337,6 @@ func newmapUint16UintValue(val mapUint16UintValue,
 
 // Set a map after parsing a string
 func (slc *mapUint16UintValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -7516,7 +7395,6 @@ func newmapUint16Uint8Value(val mapUint16Uint8Value,
 
 // Set a map after parsing a string
 func (slc *mapUint16Uint8Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -7575,7 +7453,6 @@ func newmapUint16Uint16Value(val mapUint16Uint16Value,
 
 // Set a map after parsing a string
 func (slc *mapUint16Uint16Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -7634,7 +7511,6 @@ func newmapUint16Uint32Value(val mapUint16Uint32Value,
 
 // Set a map after parsing a string
 func (slc *mapUint16Uint32Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -7693,7 +7569,6 @@ func newmapUint16Uint64Value(val mapUint16Uint64Value,
 
 // Set a map after parsing a string
 func (slc *mapUint16Uint64Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -7752,7 +7627,6 @@ func newmapUint16Float64Value(val mapUint16Float64Value,
 
 // Set a map after parsing a string
 func (slc *mapUint16Float64Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -7811,7 +7685,6 @@ func newmapUint16Float32Value(val mapUint16Float32Value,
 
 // Set a map after parsing a string
 func (slc *mapUint16Float32Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -7870,7 +7743,6 @@ func newmapUint16BoolValue(val mapUint16BoolValue,
 
 // Set a map after parsing a string
 func (slc *mapUint16BoolValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -7929,7 +7801,6 @@ func newmapUint16StringValue(val mapUint16StringValue,
 
 // Set a map after parsing a string
 func (slc *mapUint16StringValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -7988,7 +7859,6 @@ func newmapUint32DurationValue(val mapUint32DurationValue,
 
 // Set a map after parsing a string
 func (slc *mapUint32DurationValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -8047,7 +7917,6 @@ func newmapUint32IntValue(val mapUint32IntValue,
 
 // Set a map after parsing a string
 func (slc *mapUint32IntValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -8106,7 +7975,6 @@ func newmapUint32Int8Value(val mapUint32Int8Value,
 
 // Set a map after parsing a string
 func (slc *mapUint32Int8Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -8165,7 +8033,6 @@ func newmapUint32Int16Value(val mapUint32Int16Value,
 
 // Set a map after parsing a string
 func (slc *mapUint32Int16Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -8224,7 +8091,6 @@ func newmapUint32Int32Value(val mapUint32Int32Value,
 
 // Set a map after parsing a string
 func (slc *mapUint32Int32Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -8283,7 +8149,6 @@ func newmapUint32Int64Value(val mapUint32Int64Value,
 
 // Set a map after parsing a string
 func (slc *mapUint32Int64Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -8342,7 +8207,6 @@ func newmapUint32UintValue(val mapUint32UintValue,
 
 // Set a map after parsing a string
 func (slc *mapUint32UintValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -8401,7 +8265,6 @@ func newmapUint32Uint8Value(val mapUint32Uint8Value,
 
 // Set a map after parsing a string
 func (slc *mapUint32Uint8Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -8460,7 +8323,6 @@ func newmapUint32Uint16Value(val mapUint32Uint16Value,
 
 // Set a map after parsing a string
 func (slc *mapUint32Uint16Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -8519,7 +8381,6 @@ func newmapUint32Uint32Value(val mapUint32Uint32Value,
 
 // Set a map after parsing a string
 func (slc *mapUint32Uint32Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -8578,7 +8439,6 @@ func newmapUint32Uint64Value(val mapUint32Uint64Value,
 
 // Set a map after parsing a string
 func (slc *mapUint32Uint64Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -8637,7 +8497,6 @@ func newmapUint32Float64Value(val mapUint32Float64Value,
 
 // Set a map after parsing a string
 func (slc *mapUint32Float64Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -8696,7 +8555,6 @@ func newmapUint32Float32Value(val mapUint32Float32Value,
 
 // Set a map after parsing a string
 func (slc *mapUint32Float32Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -8755,7 +8613,6 @@ func newmapUint32BoolValue(val mapUint32BoolValue,
 
 // Set a map after parsing a string
 func (slc *mapUint32BoolValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -8814,7 +8671,6 @@ func newmapUint32StringValue(val mapUint32StringValue,
 
 // Set a map after parsing a string
 func (slc *mapUint32StringValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -8873,7 +8729,6 @@ func newmapUint64DurationValue(val mapUint64DurationValue,
 
 // Set a map after parsing a string
 func (slc *mapUint64DurationValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -8932,7 +8787,6 @@ func newmapUint64IntValue(val mapUint64IntValue,
 
 // Set a map after parsing a string
 func (slc *mapUint64IntValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -8991,7 +8845,6 @@ func newmapUint64Int8Value(val mapUint64Int8Value,
 
 // Set a map after parsing a string
 func (slc *mapUint64Int8Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -9050,7 +8903,6 @@ func newmapUint64Int16Value(val mapUint64Int16Value,
 
 // Set a map after parsing a string
 func (slc *mapUint64Int16Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -9109,7 +8961,6 @@ func newmapUint64Int32Value(val mapUint64Int32Value,
 
 // Set a map after parsing a string
 func (slc *mapUint64Int32Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -9168,7 +9019,6 @@ func newmapUint64Int64Value(val mapUint64Int64Value,
 
 // Set a map after parsing a string
 func (slc *mapUint64Int64Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -9227,7 +9077,6 @@ func newmapUint64UintValue(val mapUint64UintValue,
 
 // Set a map after parsing a string
 func (slc *mapUint64UintValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -9286,7 +9135,6 @@ func newmapUint64Uint8Value(val mapUint64Uint8Value,
 
 // Set a map after parsing a string
 func (slc *mapUint64Uint8Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -9345,7 +9193,6 @@ func newmapUint64Uint16Value(val mapUint64Uint16Value,
 
 // Set a map after parsing a string
 func (slc *mapUint64Uint16Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -9404,7 +9251,6 @@ func newmapUint64Uint32Value(val mapUint64Uint32Value,
 
 // Set a map after parsing a string
 func (slc *mapUint64Uint32Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -9463,7 +9309,6 @@ func newmapUint64Uint64Value(val mapUint64Uint64Value,
 
 // Set a map after parsing a string
 func (slc *mapUint64Uint64Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -9522,7 +9367,6 @@ func newmapUint64Float64Value(val mapUint64Float64Value,
 
 // Set a map after parsing a string
 func (slc *mapUint64Float64Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -9581,7 +9425,6 @@ func newmapUint64Float32Value(val mapUint64Float32Value,
 
 // Set a map after parsing a string
 func (slc *mapUint64Float32Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -9640,7 +9483,6 @@ func newmapUint64BoolValue(val mapUint64BoolValue,
 
 // Set a map after parsing a string
 func (slc *mapUint64BoolValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -9699,7 +9541,6 @@ func newmapUint64StringValue(val mapUint64StringValue,
 
 // Set a map after parsing a string
 func (slc *mapUint64StringValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -9758,7 +9599,6 @@ func newmapFloat64DurationValue(val mapFloat64DurationValue,
 
 // Set a map after parsing a string
 func (slc *mapFloat64DurationValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -9817,7 +9657,6 @@ func newmapFloat64IntValue(val mapFloat64IntValue,
 
 // Set a map after parsing a string
 func (slc *mapFloat64IntValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -9876,7 +9715,6 @@ func newmapFloat64Int8Value(val mapFloat64Int8Value,
 
 // Set a map after parsing a string
 func (slc *mapFloat64Int8Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -9935,7 +9773,6 @@ func newmapFloat64Int16Value(val mapFloat64Int16Value,
 
 // Set a map after parsing a string
 func (slc *mapFloat64Int16Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -9994,7 +9831,6 @@ func newmapFloat64Int32Value(val mapFloat64Int32Value,
 
 // Set a map after parsing a string
 func (slc *mapFloat64Int32Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -10053,7 +9889,6 @@ func newmapFloat64Int64Value(val mapFloat64Int64Value,
 
 // Set a map after parsing a string
 func (slc *mapFloat64Int64Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -10112,7 +9947,6 @@ func newmapFloat64UintValue(val mapFloat64UintValue,
 
 // Set a map after parsing a string
 func (slc *mapFloat64UintValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -10171,7 +10005,6 @@ func newmapFloat64Uint8Value(val mapFloat64Uint8Value,
 
 // Set a map after parsing a string
 func (slc *mapFloat64Uint8Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -10230,7 +10063,6 @@ func newmapFloat64Uint16Value(val mapFloat64Uint16Value,
 
 // Set a map after parsing a string
 func (slc *mapFloat64Uint16Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -10289,7 +10121,6 @@ func newmapFloat64Uint32Value(val mapFloat64Uint32Value,
 
 // Set a map after parsing a string
 func (slc *mapFloat64Uint32Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -10348,7 +10179,6 @@ func newmapFloat64Uint64Value(val mapFloat64Uint64Value,
 
 // Set a map after parsing a string
 func (slc *mapFloat64Uint64Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -10407,7 +10237,6 @@ func newmapFloat64Float64Value(val mapFloat64Float64Value,
 
 // Set a map after parsing a string
 func (slc *mapFloat64Float64Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -10466,7 +10295,6 @@ func newmapFloat64Float32Value(val mapFloat64Float32Value,
 
 // Set a map after parsing a string
 func (slc *mapFloat64Float32Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -10525,7 +10353,6 @@ func newmapFloat64BoolValue(val mapFloat64BoolValue,
 
 // Set a map after parsing a string
 func (slc *mapFloat64BoolValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -10584,7 +10411,6 @@ func newmapFloat64StringValue(val mapFloat64StringValue,
 
 // Set a map after parsing a string
 func (slc *mapFloat64StringValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -10643,7 +10469,6 @@ func newmapFloat32DurationValue(val mapFloat32DurationValue,
 
 // Set a map after parsing a string
 func (slc *mapFloat32DurationValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -10702,7 +10527,6 @@ func newmapFloat32IntValue(val mapFloat32IntValue,
 
 // Set a map after parsing a string
 func (slc *mapFloat32IntValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -10761,7 +10585,6 @@ func newmapFloat32Int8Value(val mapFloat32Int8Value,
 
 // Set a map after parsing a string
 func (slc *mapFloat32Int8Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -10820,7 +10643,6 @@ func newmapFloat32Int16Value(val mapFloat32Int16Value,
 
 // Set a map after parsing a string
 func (slc *mapFloat32Int16Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -10879,7 +10701,6 @@ func newmapFloat32Int32Value(val mapFloat32Int32Value,
 
 // Set a map after parsing a string
 func (slc *mapFloat32Int32Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -10938,7 +10759,6 @@ func newmapFloat32Int64Value(val mapFloat32Int64Value,
 
 // Set a map after parsing a string
 func (slc *mapFloat32Int64Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -10997,7 +10817,6 @@ func newmapFloat32UintValue(val mapFloat32UintValue,
 
 // Set a map after parsing a string
 func (slc *mapFloat32UintValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -11056,7 +10875,6 @@ func newmapFloat32Uint8Value(val mapFloat32Uint8Value,
 
 // Set a map after parsing a string
 func (slc *mapFloat32Uint8Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -11115,7 +10933,6 @@ func newmapFloat32Uint16Value(val mapFloat32Uint16Value,
 
 // Set a map after parsing a string
 func (slc *mapFloat32Uint16Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -11174,7 +10991,6 @@ func newmapFloat32Uint32Value(val mapFloat32Uint32Value,
 
 // Set a map after parsing a string
 func (slc *mapFloat32Uint32Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -11233,7 +11049,6 @@ func newmapFloat32Uint64Value(val mapFloat32Uint64Value,
 
 // Set a map after parsing a string
 func (slc *mapFloat32Uint64Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -11292,7 +11107,6 @@ func newmapFloat32Float64Value(val mapFloat32Float64Value,
 
 // Set a map after parsing a string
 func (slc *mapFloat32Float64Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -11351,7 +11165,6 @@ func newmapFloat32Float32Value(val mapFloat32Float32Value,
 
 // Set a map after parsing a string
 func (slc *mapFloat32Float32Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -11410,7 +11223,6 @@ func newmapFloat32BoolValue(val mapFloat32BoolValue,
 
 // Set a map after parsing a string
 func (slc *mapFloat32BoolValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -11469,7 +11281,6 @@ func newmapFloat32StringValue(val mapFloat32StringValue,
 
 // Set a map after parsing a string
 func (slc *mapFloat32StringValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -11528,7 +11339,6 @@ func newmapBoolDurationValue(val mapBoolDurationValue,
 
 // Set a map after parsing a string
 func (slc *mapBoolDurationValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -11587,7 +11397,6 @@ func newmapBoolIntValue(val mapBoolIntValue,
 
 // Set a map after parsing a string
 func (slc *mapBoolIntValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -11646,7 +11455,6 @@ func newmapBoolInt8Value(val mapBoolInt8Value,
 
 // Set a map after parsing a string
 func (slc *mapBoolInt8Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -11705,7 +11513,6 @@ func newmapBoolInt16Value(val mapBoolInt16Value,
 
 // Set a map after parsing a string
 func (slc *mapBoolInt16Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -11764,7 +11571,6 @@ func newmapBoolInt32Value(val mapBoolInt32Value,
 
 // Set a map after parsing a string
 func (slc *mapBoolInt32Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -11823,7 +11629,6 @@ func newmapBoolInt64Value(val mapBoolInt64Value,
 
 // Set a map after parsing a string
 func (slc *mapBoolInt64Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -11882,7 +11687,6 @@ func newmapBoolUintValue(val mapBoolUintValue,
 
 // Set a map after parsing a string
 func (slc *mapBoolUintValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -11941,7 +11745,6 @@ func newmapBoolUint8Value(val mapBoolUint8Value,
 
 // Set a map after parsing a string
 func (slc *mapBoolUint8Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -12000,7 +11803,6 @@ func newmapBoolUint16Value(val mapBoolUint16Value,
 
 // Set a map after parsing a string
 func (slc *mapBoolUint16Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -12059,7 +11861,6 @@ func newmapBoolUint32Value(val mapBoolUint32Value,
 
 // Set a map after parsing a string
 func (slc *mapBoolUint32Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -12118,7 +11919,6 @@ func newmapBoolUint64Value(val mapBoolUint64Value,
 
 // Set a map after parsing a string
 func (slc *mapBoolUint64Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -12177,7 +11977,6 @@ func newmapBoolFloat64Value(val mapBoolFloat64Value,
 
 // Set a map after parsing a string
 func (slc *mapBoolFloat64Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -12236,7 +12035,6 @@ func newmapBoolFloat32Value(val mapBoolFloat32Value,
 
 // Set a map after parsing a string
 func (slc *mapBoolFloat32Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -12295,7 +12093,6 @@ func newmapBoolBoolValue(val mapBoolBoolValue,
 
 // Set a map after parsing a string
 func (slc *mapBoolBoolValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -12354,7 +12151,6 @@ func newmapBoolStringValue(val mapBoolStringValue,
 
 // Set a map after parsing a string
 func (slc *mapBoolStringValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -12413,7 +12209,6 @@ func newmapStringDurationValue(val mapStringDurationValue,
 
 // Set a map after parsing a string
 func (slc *mapStringDurationValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -12472,7 +12267,6 @@ func newmapStringIntValue(val mapStringIntValue,
 
 // Set a map after parsing a string
 func (slc *mapStringIntValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -12531,7 +12325,6 @@ func newmapStringInt8Value(val mapStringInt8Value,
 
 // Set a map after parsing a string
 func (slc *mapStringInt8Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -12590,7 +12383,6 @@ func newmapStringInt16Value(val mapStringInt16Value,
 
 // Set a map after parsing a string
 func (slc *mapStringInt16Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -12649,7 +12441,6 @@ func newmapStringInt32Value(val mapStringInt32Value,
 
 // Set a map after parsing a string
 func (slc *mapStringInt32Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -12708,7 +12499,6 @@ func newmapStringInt64Value(val mapStringInt64Value,
 
 // Set a map after parsing a string
 func (slc *mapStringInt64Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -12767,7 +12557,6 @@ func newmapStringUintValue(val mapStringUintValue,
 
 // Set a map after parsing a string
 func (slc *mapStringUintValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -12826,7 +12615,6 @@ func newmapStringUint8Value(val mapStringUint8Value,
 
 // Set a map after parsing a string
 func (slc *mapStringUint8Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -12885,7 +12673,6 @@ func newmapStringUint16Value(val mapStringUint16Value,
 
 // Set a map after parsing a string
 func (slc *mapStringUint16Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -12944,7 +12731,6 @@ func newmapStringUint32Value(val mapStringUint32Value,
 
 // Set a map after parsing a string
 func (slc *mapStringUint32Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -13003,7 +12789,6 @@ func newmapStringUint64Value(val mapStringUint64Value,
 
 // Set a map after parsing a string
 func (slc *mapStringUint64Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -13062,7 +12847,6 @@ func newmapStringFloat64Value(val mapStringFloat64Value,
 
 // Set a map after parsing a string
 func (slc *mapStringFloat64Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -13121,7 +12905,6 @@ func newmapStringFloat32Value(val mapStringFloat32Value,
 
 // Set a map after parsing a string
 func (slc *mapStringFloat32Value) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -13180,7 +12963,6 @@ func newmapStringBoolValue(val mapStringBoolValue,
 
 // Set a map after parsing a string
 func (slc *mapStringBoolValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 
@@ -13239,7 +13021,6 @@ func newmapStringStringValue(val mapStringStringValue,
 
 // Set a map after parsing a string
 func (slc *mapStringStringValue) Set(s string) error {
-  fmt.Printf("%v %T\n", slc, slc)
 	return MapFromText(slc, s)
 }
 

@@ -34,8 +34,15 @@ func (info *InfoType) UnderScoreCamelCaseWords() {
 // HyphenateCamelCaseWords converts camel case name string and
 // hyphenates words for flags between words
 func (info *InfoType) HyphenateCamelCaseWords() {
-	info.FlagName = strings.Replace(info.FlagName, "_", "", -1)
-	// defer tracer.ScopedTrace()()
+	prefix := strings.Replace(info.EnvVarPrefix, info.AppName, "", 1)
+	if len(prefix) > 0 && (prefix[0] == '-' || prefix[0] == '_') {
+		prefix = prefix[1:]
+	}
+	if len(prefix) > 0 {
+		info.FlagName = prefix + "-" + Capitalize(info.Name)
+	}
+
+	info.FlagName = strings.Replace(info.FlagName, "_", "-", -1)
 	words := regExpr.FindAllStringSubmatch(info.FlagName, -1)
 	if len(words) > 0 {
 		var name []string
@@ -44,4 +51,5 @@ func (info *InfoType) HyphenateCamelCaseWords() {
 		}
 		info.FlagName = strings.Join(name, "-")
 	}
+	info.FlagName = strings.Replace(info.FlagName, "--", "-", -1)
 }

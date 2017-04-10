@@ -5,6 +5,10 @@ import (
 	"reflect"
 )
 
+// AppEnvVarPrefixOverrideName environment variable application lookup
+// prefix override, default prefix is the struct name
+var AppEnvVarPrefixOverrideName = "APP_OVERRIDE_PREFIX"
+
 // Parse the struct and flags initializing configuration from tags,
 // environment, and flags in order, additional flags must be defined
 // prior to Parse call as it calls flag.Parse
@@ -15,10 +19,8 @@ func (structInfo *StructInfo) Parse() (err error) {
 			return
 		}
 		flag.Parse()
-		flag.Usage()
 	} else {
-		flag.Usage()
-		panic("Process called more than once")
+		panic("Parse called more than once")
 	}
 	return
 }
@@ -37,18 +39,21 @@ func (structInfo *StructInfo) process() (err error) {
 		case reflect.Struct:
 			element := reflect.ValueOf(structInfo.StructPtr).Elem()
 			elementType := element.Type()
+			AppName := elementType.Name()
 			if structInfo.EnvVarPrefix, ok = lookupEnv(AppEnvVarPrefixOverrideName); !ok {
 				structInfo.EnvVarPrefix = elementType.Name()
+			} else {
+				AppName = structInfo.EnvVarPrefix
 			}
 			prefix := structInfo.EnvVarPrefix
+
 			for i := 0; i < elementType.NumField(); i++ {
 				structField := elementType.Field(i)
 				ptr := element.Field(i).Addr().Interface()
 				var info = &InfoType{
-					AppName:      elementType.Name(),
+					AppName:      AppName,
 					EnvVarPrefix: prefix,
 				}
-
 				if err = info.Process(prefix, structField, ptr, depth); err != nil {
 					return
 				}

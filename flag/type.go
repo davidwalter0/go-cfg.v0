@@ -22,10 +22,14 @@ func newsliceDurationValue(val sliceDurationValue, p *sliceDurationValue) *slice
 	return p
 }
 
+
 // Set a slice after parsing a string
 func (slc *sliceDurationValue) Set(s string) error {
-	T := reflect.TypeOf(sliceDurationValue{}).Elem()
-  fmt.Printf("%v %T\n", T,T)
+  var T = reflect.TypeOf(sliceDurationValue{}).Elem()
+  var debugging = false
+  if debugging {
+    fmt.Printf("%v %T\n", T,T)
+  }
   
 	var l = strings.Split(s, ",")
 
@@ -93,10 +97,14 @@ func newsliceIntValue(val sliceIntValue, p *sliceIntValue) *sliceIntValue {
 	return p
 }
 
+
 // Set a slice after parsing a string
 func (slc *sliceIntValue) Set(s string) error {
-	T := reflect.TypeOf(sliceIntValue{}).Elem()
-  fmt.Printf("%v %T\n", T,T)
+  var T = reflect.TypeOf(sliceIntValue{}).Elem()
+  var debugging = false
+  if debugging {
+    fmt.Printf("%v %T\n", T,T)
+  }
   var n interface{}
 	var l = strings.Split(s, ",")
 
@@ -161,10 +169,14 @@ func newsliceInt8Value(val sliceInt8Value, p *sliceInt8Value) *sliceInt8Value {
 	return p
 }
 
+
 // Set a slice after parsing a string
 func (slc *sliceInt8Value) Set(s string) error {
-	T := reflect.TypeOf(sliceInt8Value{}).Elem()
-  fmt.Printf("%v %T\n", T,T)
+  var T = reflect.TypeOf(sliceInt8Value{}).Elem()
+  var debugging = false
+  if debugging {
+    fmt.Printf("%v %T\n", T,T)
+  }
   var n interface{}
 	var l = strings.Split(s, ",")
 
@@ -229,10 +241,14 @@ func newsliceInt16Value(val sliceInt16Value, p *sliceInt16Value) *sliceInt16Valu
 	return p
 }
 
+
 // Set a slice after parsing a string
 func (slc *sliceInt16Value) Set(s string) error {
-	T := reflect.TypeOf(sliceInt16Value{}).Elem()
-  fmt.Printf("%v %T\n", T,T)
+  var T = reflect.TypeOf(sliceInt16Value{}).Elem()
+  var debugging = false
+  if debugging {
+    fmt.Printf("%v %T\n", T,T)
+  }
   var n interface{}
 	var l = strings.Split(s, ",")
 
@@ -297,10 +313,14 @@ func newsliceInt32Value(val sliceInt32Value, p *sliceInt32Value) *sliceInt32Valu
 	return p
 }
 
+
 // Set a slice after parsing a string
 func (slc *sliceInt32Value) Set(s string) error {
-	T := reflect.TypeOf(sliceInt32Value{}).Elem()
-  fmt.Printf("%v %T\n", T,T)
+  var T = reflect.TypeOf(sliceInt32Value{}).Elem()
+  var debugging = false
+  if debugging {
+    fmt.Printf("%v %T\n", T,T)
+  }
   var n interface{}
 	var l = strings.Split(s, ",")
 
@@ -365,10 +385,14 @@ func newsliceInt64Value(val sliceInt64Value, p *sliceInt64Value) *sliceInt64Valu
 	return p
 }
 
+
 // Set a slice after parsing a string
 func (slc *sliceInt64Value) Set(s string) error {
-	T := reflect.TypeOf(sliceInt64Value{}).Elem()
-  fmt.Printf("%v %T\n", T,T)
+  var T = reflect.TypeOf(sliceInt64Value{}).Elem()
+  var debugging = false
+  if debugging {
+    fmt.Printf("%v %T\n", T,T)
+  }
   var n interface{}
 	var l = strings.Split(s, ",")
 
@@ -433,10 +457,14 @@ func newsliceUintValue(val sliceUintValue, p *sliceUintValue) *sliceUintValue {
 	return p
 }
 
+
 // Set a slice after parsing a string
 func (slc *sliceUintValue) Set(s string) error {
-	T := reflect.TypeOf(sliceUintValue{}).Elem()
-  fmt.Printf("%v %T\n", T,T)
+  var T = reflect.TypeOf(sliceUintValue{}).Elem()
+  var debugging = false
+  if debugging {
+    fmt.Printf("%v %T\n", T,T)
+  }
   var n interface{}
 	var l = strings.Split(s, ",")
 
@@ -501,10 +529,14 @@ func newsliceUint8Value(val sliceUint8Value, p *sliceUint8Value) *sliceUint8Valu
 	return p
 }
 
+
 // Set a slice after parsing a string
 func (slc *sliceUint8Value) Set(s string) error {
-	T := reflect.TypeOf(sliceUint8Value{}).Elem()
-  fmt.Printf("%v %T\n", T,T)
+  var T = reflect.TypeOf(sliceUint8Value{}).Elem()
+  var debugging = false
+  if debugging {
+    fmt.Printf("%v %T\n", T,T)
+  }
   var n interface{}
 	var l = strings.Split(s, ",")
 
@@ -569,10 +601,14 @@ func newsliceUint16Value(val sliceUint16Value, p *sliceUint16Value) *sliceUint16
 	return p
 }
 
+
 // Set a slice after parsing a string
 func (slc *sliceUint16Value) Set(s string) error {
-	T := reflect.TypeOf(sliceUint16Value{}).Elem()
-  fmt.Printf("%v %T\n", T,T)
+  var T = reflect.TypeOf(sliceUint16Value{}).Elem()
+  var debugging = false
+  if debugging {
+    fmt.Printf("%v %T\n", T,T)
+  }
   var n interface{}
 	var l = strings.Split(s, ",")
 
@@ -637,10 +673,14 @@ func newsliceUint32Value(val sliceUint32Value, p *sliceUint32Value) *sliceUint32
 	return p
 }
 
+
 // Set a slice after parsing a string
 func (slc *sliceUint32Value) Set(s string) error {
-	T := reflect.TypeOf(sliceUint32Value{}).Elem()
-  fmt.Printf("%v %T\n", T,T)
+  var T = reflect.TypeOf(sliceUint32Value{}).Elem()
+  var debugging = false
+  if debugging {
+    fmt.Printf("%v %T\n", T,T)
+  }
   var n interface{}
 	var l = strings.Split(s, ",")
 
@@ -705,10 +745,14 @@ func newsliceUint64Value(val sliceUint64Value, p *sliceUint64Value) *sliceUint64
 	return p
 }
 
+
 // Set a slice after parsing a string
 func (slc *sliceUint64Value) Set(s string) error {
-	T := reflect.TypeOf(sliceUint64Value{}).Elem()
-  fmt.Printf("%v %T\n", T,T)
+  var T = reflect.TypeOf(sliceUint64Value{}).Elem()
+  var debugging = false
+  if debugging {
+    fmt.Printf("%v %T\n", T,T)
+  }
   var n interface{}
 	var l = strings.Split(s, ",")
 
@@ -773,10 +817,14 @@ func newsliceFloat64Value(val sliceFloat64Value, p *sliceFloat64Value) *sliceFlo
 	return p
 }
 
+
 // Set a slice after parsing a string
 func (slc *sliceFloat64Value) Set(s string) error {
-	T := reflect.TypeOf(sliceFloat64Value{}).Elem()
-  fmt.Printf("%v %T\n", T,T)
+  var T = reflect.TypeOf(sliceFloat64Value{}).Elem()
+  var debugging = false
+  if debugging {
+    fmt.Printf("%v %T\n", T,T)
+  }
   var n interface{}
 	var l = strings.Split(s, ",")
 
@@ -841,10 +889,14 @@ func newsliceFloat32Value(val sliceFloat32Value, p *sliceFloat32Value) *sliceFlo
 	return p
 }
 
+
 // Set a slice after parsing a string
 func (slc *sliceFloat32Value) Set(s string) error {
-	T := reflect.TypeOf(sliceFloat32Value{}).Elem()
-  fmt.Printf("%v %T\n", T,T)
+  var T = reflect.TypeOf(sliceFloat32Value{}).Elem()
+  var debugging = false
+  if debugging {
+    fmt.Printf("%v %T\n", T,T)
+  }
   var n interface{}
 	var l = strings.Split(s, ",")
 
@@ -909,10 +961,14 @@ func newsliceBoolValue(val sliceBoolValue, p *sliceBoolValue) *sliceBoolValue {
 	return p
 }
 
+
 // Set a slice after parsing a string
 func (slc *sliceBoolValue) Set(s string) error {
-	T := reflect.TypeOf(sliceBoolValue{}).Elem()
-  fmt.Printf("%v %T\n", T,T)
+  var T = reflect.TypeOf(sliceBoolValue{}).Elem()
+  var debugging = false
+  if debugging {
+    fmt.Printf("%v %T\n", T,T)
+  }
   var n interface{}
 	var l = strings.Split(s, ",")
 
@@ -977,10 +1033,14 @@ func newsliceStringValue(val sliceStringValue, p *sliceStringValue) *sliceString
 	return p
 }
 
+
 // Set a slice after parsing a string
 func (slc *sliceStringValue) Set(s string) error {
-	T := reflect.TypeOf(sliceStringValue{}).Elem()
-  fmt.Printf("%v %T\n", T,T)
+  var T = reflect.TypeOf(sliceStringValue{}).Elem()
+  var debugging = false
+  if debugging {
+    fmt.Printf("%v %T\n", T,T)
+  }
   
 	var l = strings.Split(s, ",")
 

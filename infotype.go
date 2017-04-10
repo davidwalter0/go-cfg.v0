@@ -4,9 +4,14 @@ import (
 	"github.com/davidwalter0/envflagstructconfig/flag"
 
 	"fmt"
+	"log"
 	"reflect"
 	"strings"
 )
+
+func ignore() {
+	log.Println()
+}
 
 // TagInit initialize the InfoType struct from the struct tags
 func (info *InfoType) TagInit(tag reflect.StructTag) {
@@ -32,15 +37,10 @@ func (info *InfoType) Process(prefix string, structField reflect.StructField, pt
 	if len(info.Name) == 0 {
 		info.Name = structField.Name
 	}
+
 	info.EnvVarPrefix = prefix
 	info.KeyName = info.Name
 	info.FlagName = info.Name
-	if depth > 0 {
-		subPrefix := strings.Replace(info.EnvVarPrefix, info.AppName+"_", "", 1)
-		info.FlagName = Capitalize(subPrefix) + "_" + Capitalize(info.Name)
-		info.HyphenateCamelCaseWords()
-	}
-
 	info.UnderScoreCamelCaseWords()
 	info.HyphenateCamelCaseWords()
 	info.EnvInit()

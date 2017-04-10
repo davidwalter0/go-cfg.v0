@@ -1,22 +1,23 @@
 func TestParseSlice{{.Type}}(t *testing.T) {
-	T := reflect.TypeOf(slice{{.Type}}Value{}).Elem()
-  fmt.Printf("%v %T\n", T,T)
+	T := reflect.TypeOf({{.SliceTypeValueName}}{}).Elem()
 
-	os.Clearenv()
-  fmt.Println("Test for {{.type}} Slice{{.Type}}")
-	var slice{{.Type}} = new(slice{{.Type}}Value)
+	var slice{{.Type}} = new({{.SliceTypeValueName}})
 	Var(slice{{.Type}}, "slice{{.Type}}", "use Slice{{.Type}}")
   switch T.Kind() {
   case reflect.Int8, reflect.Int16, reflect.Int, reflect.Int32, reflect.Int64:
+    {{ if (eq "time.Duration" .CastTypeName) -}}
+    slice{{.Type}}.Set("1h2m3s,720h4m3s")
+    {{- else -}}
     slice{{.Type}}.Set("1,2,3")
+    {{- end }}
   case reflect.Uint8, reflect.Uint16, reflect.Uint, reflect.Uint32, reflect.Uint64:
     slice{{.Type}}.Set("1,2,3")
   case reflect.Float32, reflect.Float64:
     slice{{.Type}}.Set("1.1,2.2,3.3")
   case reflect.Bool:
     slice{{.Type}}.Set("false,true")
+  case reflect.String:
+    slice{{.Type}}.Set("a,b,c,false,true,another string value")
   }
-	fmt.Printf("%v %T\n", *slice{{.Type}}, *slice{{.Type}})
-	// Parse()
-	// Usage()
+	// fmt.Printf("{{.type}} Slice{{.Type}} %v\n", *slice{{.Type}})
 }

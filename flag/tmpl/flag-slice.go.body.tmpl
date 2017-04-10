@@ -8,10 +8,14 @@ func new{{.SliceTypeValueName}}(val {{.SliceTypeValueName}}, p *{{.SliceTypeValu
 	return p
 }
 
+
 // Set a slice after parsing a string
 func (slc *{{.SliceTypeValueName}}) Set(s string) error {
-	T := reflect.TypeOf({{.SliceTypeValueName}}{}).Elem()
-  fmt.Printf("%v %T\n", T,T)
+  var T = reflect.TypeOf({{.SliceTypeValueName}}{}).Elem()
+  var debugging = false
+  if debugging {
+    fmt.Printf("%v %T\n", T,T)
+  }
   {{ if (and (ne "string" .type) (ne "time.Duration" .CastTypeName)) -}}
 	var n interface{}
   {{- end }}
