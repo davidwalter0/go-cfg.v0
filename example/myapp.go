@@ -7,10 +7,10 @@ import (
 type myAPP struct {
 	Debug        bool               `name:"Debug" short:"d" default:"false" usage:"enable debug mode"`
 	Port         int                `short:"p" default:"8080" usage:"primary ip port"`
-	CaC          string             `usage:"cc users for ..."`
+	CaC          string             `usage:"cc users for ..." default:"abc123"`
 	CC           string             `usage:"cc users for ..."`
 	User         string             `usage:"user for ..."`
-	UserName     string             `envconfig:"USER_NAME"`
+	UserName     string             `name:"USER_NAME"`
 	Users        []string           `name:"nameOverride"`
 	UserArray    []string           `default:"x,y,z,0,1"`
 	IntArray     []int64            `default:"0,1,2,3,4"`
@@ -38,6 +38,15 @@ type myAPP struct {
 			F   float64            `default:"3.1415926"`
 			Msi map[string]int     `default:"white:0,black:1,red:,green:2,blue:3"`
 			Msf map[string]float64 `default:"e:2.71828,π:3.14159,ξ:1,ρ:.01,φ:1.2,β:3,α:.01"`
+		}
+	}
+	A struct {
+		B struct {
+			C struct {
+				D struct {
+					E int ``
+				}
+			}
 		}
 	}
 }

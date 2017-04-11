@@ -54,7 +54,7 @@ func (structInfo *StructInfo) process() (err error) {
 					AppName:      AppName,
 					EnvVarPrefix: prefix,
 				}
-				if err = member.Process(prefix, structField, ptr, depth); err != nil {
+				if err = member.Parse(prefix, structField, ptr, depth); err != nil {
 					return
 				}
 			}

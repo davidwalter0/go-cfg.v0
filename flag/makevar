@@ -32,9 +32,10 @@ string
 makeVarHead='package flag
 
 import (
-	"log"
-	"fmt"
-	"time"
+        "log"
+        "fmt"
+        "strings"
+        "time"
 )
 
 // TypeName typename from environment variable TYPENAME 
@@ -44,39 +45,64 @@ import (
 // Special case time.Duration
 
 // MakeVar type cast to type with interface matching Set, Value
-func MakeVar(addr interface{}, name, defaultValue, usage string) {
-	switch ptr := addr.(type) {
+func MakeVar(addr interface{}, name, defaultValue, usage, override string ) {
+  defaultValue = strings.TrimSpace(defaultValue)
+  override = strings.TrimSpace(override)
+  switch ptr := addr.(type) {
 '
 
-makeVarTail='	default:
-		// log.Fatalf("Unhandled Type %T\n", ptr)
-		panic(fmt.Sprintf("Unhandled Type %v %T\n", ptr, ptr))
-	}
-}'
+makeVarTail='    default:
+    // log.Fatalf("Unhandled Type %T\n", ptr)
+    panic(fmt.Sprintf("Unhandled Type %v %T\n", ptr, ptr))
+    }
+  }'
 
 
 
-template='	case *{{.CastTypeName}}:
-		var varType = (*{{.SetterTypeName}})(ptr)
-		if err := varType.Set(defaultValue); err != nil {
-		   log.Fatalf("Error setting {{.SetterTypeName}} %T %v\n", ptr, err)
-		}
-		CommandLine.Var(varType, name, usage)'
+template='  case *{{.CastTypeName}}:
+    var varType = (*{{.SetterTypeName}})(ptr)
+    if len(defaultValue) > 0 {
+      if err := varType.Set(defaultValue); err != nil {
+         log.Fatalf("Error setting {{.SetterTypeName}} %T %v\n", ptr, err)
+      }
+    }
+    CommandLine.Var(varType, name, usage)
+    if len(override) > 0 {
+      if err := varType.Set(override); err != nil {
+         log.Fatalf("Error setting {{.SetterTypeName}} %T %v\n", ptr, err)
+      }
+    }'
+
 
 # Var defines a flag with the specified name and usage string
-maptemplate='	case *{{.MapCastType}}:
-		var varType = (*{{.MapSetterTypeNameValue}})(ptr)
-		if err := varType.Set(defaultValue); err != nil {
-		   log.Fatalf("Error setting {{.MapSetterTypeNameValue}} %T %v\n", ptr, err)
-		}
-		CommandLine.Var(varType, name, usage)'
+maptemplate='  case *{{.MapCastType}}:
+    var varType = (*{{.MapSetterTypeNameValue}})(ptr)
+    if len(defaultValue) > 0 {
+      if err := varType.Set(defaultValue); err != nil {
+         log.Fatalf("Error setting {{.MapSetterTypeNameValue}} %T %v\n", ptr, err)
+      }
+    }
+    CommandLine.Var(varType, name, usage)
+    if len(override) > 0 {
+      if err := varType.Set(override); err != nil {
+         log.Fatalf("Error setting {{.MapSetterTypeNameValue}} %T %v\n", ptr, err)
+      }
+    }'
 
-sliceTemplate='	case *{{.SliceType}}:
-		var varType = (*{{.SliceTypeValueName}})(ptr)
-		if err := varType.Set(defaultValue); err != nil {
-		   log.Fatalf("Error setting {{.SliceTypeValueName}} %T %v\n", ptr, err)
-		}
-		CommandLine.Var(varType, name, usage)'
+sliceTemplate=' case *{{.SliceType}}:
+    var varType = (*{{.SliceTypeValueName}})(ptr)
+    if len(defaultValue) > 0 {
+      if err := varType.Set(defaultValue); err != nil {
+         log.Fatalf("Error setting {{.SliceTypeValueName}} %T %v\n", ptr, err)
+      }
+    }
+    CommandLine.Var(varType, name, usage)
+    if len(override) > 0 {
+      if err := varType.Set(override); err != nil {
+         log.Fatalf("Error setting {{.SliceTypeValueName}} %T %v\n", ptr, err)
+      }
+    }'
+
 
 (
     echo "${makeVarHead}"
@@ -104,7 +130,7 @@ sliceTemplate='	case *{{.SliceType}}:
     unset KEYNAME
 
     echo "${makeVarTail}"
-) > typecase.go
+) > makevar.go
 
 
 sliceTemplateBody="$(cat tmpl/flag-slice.go.body.tmpl)"
@@ -116,9 +142,9 @@ mapTemplateHeader='package flag
 //
 ////////////////////////////////////////////////////////////////////////
 import (
-	"fmt"
-	"strings"
-	"time"
+        "fmt"
+        "strings"
+        "time"
 )
 
 '
@@ -129,11 +155,11 @@ sliceTemplateHeader='package flag
 //
 ////////////////////////////////////////////////////////////////////////
 import (
-	"fmt"
-	"strings"
-	"strconv"
-	"reflect"
-	"time"
+        "fmt"
+        "strings"
+        "strconv"
+        "reflect"
+        "time"
 )
 
 '
@@ -141,9 +167,9 @@ import (
 sliceTestTemplateHeader='package flag
 
 import (
-	"fmt"
-	"testing"
-	"reflect"
+        "fmt"
+        "testing"
+        "reflect"
 )
 
 func init(){
@@ -171,7 +197,7 @@ mapTypeTemplate="$(cat tmpl/map.go.tmpl)"
         export TYPENAME=${TYPENAME}
         echo "${sliceTemplateBody}"     | k8s-template --mappings tmpl/mappings.yaml
     done
-) > type.go
+) > slicetypes.go
 
 (
     echo "${sliceTestTemplateHeader}"
@@ -192,8 +218,8 @@ mapTestTypeTemplate="$(cat tmpl/map_test.go.tmpl)"
 mapTestTemplateHeader='package flag
 
 import (
-	"fmt"
-	"testing"
+        "fmt"
+        "testing"
 )
 
 func init(){

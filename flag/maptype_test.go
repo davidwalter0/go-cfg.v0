@@ -1,8 +1,8 @@
 package flag
 
 import (
-	"fmt"
-	"testing"
+        "fmt"
+        "testing"
 )
 
 func init(){

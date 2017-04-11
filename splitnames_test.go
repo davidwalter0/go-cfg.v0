@@ -6,14 +6,14 @@ import (
 
 // TestUnderScoreCamelCaseWords split on CamelCase words
 func TestUnderScoreCamelCaseWords(t *testing.T) {
-	var info = &Info{}
+	var member = &MemberType{}
 	member.UnderScoreCamelCaseWords()
 
 }
 
 // TestHyphenateCamelCaseWords converts camel case name string and
 // hyphenates words for flags between words
-func TestHyphenateCamelCaseWords() {
-	var info = &Info{}
+func TestHyphenateCamelCaseWords(t *testing.T) {
+	var member = &MemberType{}
 	member.HyphenateCamelCaseWords()
 }

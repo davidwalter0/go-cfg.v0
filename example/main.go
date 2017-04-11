@@ -7,11 +7,14 @@ import (
 	"os"
 
 	"github.com/davidwalter0/envflagstructconfig"
-	// "github.com/davidwalter0/envflagstructconfig/flag"
+	"github.com/davidwalter0/envflagstructconfig/flag"
 )
 
 type Key string
 type Value float64
+
+// X flag
+var X = flag.String("FLAG", "STRING_VALUE", "FLAG USAGE...")
 
 func main() {
 
@@ -21,14 +24,12 @@ func main() {
 		var sti *envflagstructconfig.StructInfo = &envflagstructconfig.StructInfo{
 			StructPtr: &myapp,
 		}
-		sti.Parse()
-		log.Println(myapp)
-		log.Printf("%v %T\n", myapp, myapp)
-		jsonText, _ := json.MarshalIndent(&myapp, "", "  ")
-		log.Printf("\n%v\n", string(jsonText))
+		if err := sti.Parse(); err != nil {
+			log.Fatalf("%v\n", err)
+		}
 
 		log.Printf("%v %T\n", myapp, myapp)
-		jsonText, _ = json.MarshalIndent(&myapp, "", "  ")
+		jsonText, _ := json.MarshalIndent(&myapp, "", "  ")
 		log.Printf("\n%v\n", string(jsonText))
 		/*
 			flag.Usage()

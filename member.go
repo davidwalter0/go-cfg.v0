@@ -15,6 +15,11 @@ func ignore() {
 
 // TagInit initialize the MemberType struct from the struct tags
 func (member *MemberType) TagInit(tag reflect.StructTag) {
+	defer func() {
+		if err := recover(); err != nil {
+		}
+	}()
+
 	member.Default = tag.Get("default")
 	member.Value = member.Default
 	member.Name = tag.Get("name")
@@ -31,8 +36,12 @@ func Capitalize(text string) string {
 	return capitalized
 }
 
-// Process the info structure from the current structure member
-func (member *MemberType) Process(prefix string, structField reflect.StructField, ptr interface{}, depth int) (err error) {
+// Parse the MemberType structure from the current structure member
+// assign the environment variable name, the flag name set the value
+// from the default or parsed parse the default text
+func (member *MemberType) Parse(prefix string,
+	structField reflect.StructField,
+	ptr interface{}, depth int) (err error) {
 	member.TagInit(structField.Tag)
 	if len(member.Name) == 0 {
 		member.Name = structField.Name
@@ -54,26 +63,20 @@ func (member *MemberType) Process(prefix string, structField reflect.StructField
 		for i := 0; i < elementType.NumField(); i++ {
 			structField := elementType.Field(i)
 			ptr := element.Field(i).Addr().Interface()
-			if err = member.Process(prefix, structField, ptr, depth); err != nil {
+			if err = member.Parse(prefix, structField, ptr, depth); err != nil {
 				return
 			}
 		}
 	default:
-		if len(member.Value) != 0 {
-			// if err = TextTypedVal(ptr, member.Value); err != nil {
-			// 	return
-			// }
-			flag.MakeVar(ptr, member.FlagName, member.Default,
-				member.Usage+fmt.Sprintf(":Env var name(%s) : (%v)", member.KeyName, structField.Type))
-
-		}
+		flag.MakeVar(ptr, member.FlagName, member.Default,
+			member.Usage+fmt.Sprintf(":Env var name(%s) : (%v)",
+				member.KeyName, structField.Type), member.Value)
 	}
-	// flag.Var...
 	return
 }
 
-// EnvInit capture the value from the environment for this structure
-// member
+// EnvInit uses the value from the environment for this structure
+// member replacing the default tag value
 func (member *MemberType) EnvInit() {
 	if len(member.KeyName) > 0 {
 		member.EnvText, _ = lookupEnv(member.KeyName)

@@ -1,7 +1,79 @@
+#### Environment Flag Struct Configuration
 
-Initial work was based on the idea / implementation of the golang
-`github.com/kelseyhightower/envconfig` package
+*Designed to simplify configuration option mgmt application start up*
 
+Enhanced to include assigning and parsing values from the struct tags,
+environment variables and command line flags
+
+- types are inferred from structure member types
+- app prefix inferred from struct name
+- value assignment priority is from top to bottom
+  - struct tag
+  - environment
+  - flag
+- names 
+  - environment variable: recursive struct member name with upper case
+    camel case underscore separated
+  - flag recursive struct member name with lower case camel case
+    hyphenated separated
+- flags override environment variables, which in turn override struct
+  tags, which override the type default
+
+```
+type S struct {
+  i int              `name:"AyeAye"`                      // env name S_AYE_AYE       flag -aye-aye
+  f float64          `default:"2.71728"`                  // env name S_F             flag -f
+  M map[int]float64 `name:"Map" default:"e:2.71,pi:3.14"` // env name APP_MAP           flag -map
+  A []string         `default:"a,b,c"`                    // env name S_A             flag -a
+  outer struct {
+    i int                                                 // env name S_OUTER_I       flag -outer-i
+    inner struct {
+       i int                                              // env name S_OUTER_INNER_I flag -outer-inner-i
+    }
+  }
+}
+```
+
+- Exporting APP_OVERRIDE_PREFIX set to a value will override the
+  structure name for the environment variable prefix e.g. 
+
+```
+export APP_OVERRIDE_PREFIX=APP
+type S struct {
+  i int             `name:"AyeAye"`                       // env name APP_AYE_AYE       flag -aye-aye
+  f float64         `default:"2.71728"`                   // env name APP_F             flag -f
+  M map[int]float64 `name:"Map" default:"e:2.71,pi:3.14"` // env name APP_MAP           flag -map
+  A []string        `default:"a,b,c"`                     // env name APP_A             flag -a
+  outer struct {
+    i int                                                 // env name APP_OUTER_I       flag -outer-i
+    inner struct {
+       i int                                              // env name APP_OUTER_INNER_I flag -outer-inner-i
+    }
+  }
+}
+
+```
+
+- The default value can be set in the struct tag with default:"..."
+- An environment variable value will replace the tag default if set
+- An environment var names come from the member name are prefixed with
+  the app prefix
+- The flag name derives from the member name, recursive sub struct
+  members use the inner struct names as prefixes for both environment
+  and flags
+
+
+```
+type S struct {
+  i int         
+  f float64
+  M map[int]float64 `name:"Map" default:"k1:v1,k2:v2,..."`
+}
+
+```
+- map string representation in tag `default:"k1:v1,k2:v2,..."`
+- map string representation in env variable "k1:v1,k2:v2,..."
+- slice string
 
 The example/types.go has a sample structure and sample environment
 variable bash file which can be tested and run with the following
@@ -85,17 +157,233 @@ Partial example from example/types.go
 
 ```
 
-    
 ---
 
-Limitations, bugs:
+#### Basic use
+
+
+To use:
+
+```
+go get github.com/davidwalter0/envflagstructconfig
+
+```
+
+To use import, create struct info object and call parse.
+
+```
+package main
+
+import (
+	"encoding/json"
+	"fmt"
+	"github.com/davidwalter0/envflagstructconfig"
+)
+
+type myApp struct {
+	I      int `default:"-1"`
+	Nested struct {
+		Y float64
+	}
+}
+
+func main() {
+	var myapp myApp
+
+	var sti *envflagstructconfig.StructInfo = &envflagstructconfig.StructInfo{
+		StructPtr: &myapp,
+	}
+
+	if err := sti.Parse(); err != nil { // parse tags, environment, flags
+		fmt.Errorf("%v\n", err)
+	}
+	fmt.Printf("%v %T\n", myapp, myapp)
+	jsonText, _ := json.MarshalIndent(&myapp, "", "  ")
+	fmt.Printf("\n%v\n", string(jsonText))
+}
+
+```
+
+Will create a myapp struct with the value -1 in the member variable I,
+setting an environment variable `export MYAPP_I=42` will override the
+default and the use of the flag `go run example/simple.go -i 42` will
+override the environment variable.
+
+Similarly `export MYAPP_NESTED_Y=3.14` will override the value nested
+struct value, or `go run example/simple.go --nested-y 3.14` would do
+the same
+
+Run with defaults
+
+```
+go run example/simple.go
+```
+
+Would output
+
+```
+{-1 {0}} main.myApp
+
+{
+  "I": -1,
+  "Nested": {
+    "Y": 0
+  }
+}
+
+```
+
+Running example
+```
+MYAPP_I=42 go run example/simple.go --nested-y 3.14
+```
+
+Would output
+
+```
+{42 {3.14}} main.myApp
+
+{
+  "I": 42,
+  "Nested": {
+    "Y": 3.14
+  }
+}
+```
+
+
+---
+
+A more detailed example is in the example directory and can be run with
+
+```
+. example/environment;
+go run example/main.go example/myapp.go --user Who \
+   -outer-inner-msf  "ξ:1,ρ:0.01,φ:1.2" -map "ξ:1,ρ:0.01,φ:1.2" \
+   --name-override "user-a,user-b,user-c" -ca-c x --cc abc -a-b-c-d-e 0xabcde
+```
+
+Output will resemble...
+
+```
+
+{
+  "Debug": false,
+  "Port": 8080,
+  "CaC": "x",
+  "CC": "abc",
+  "User": "",
+  "UserName": "",
+  "Users": [
+    "user-a",
+    "user-b",
+    "user-c"
+  ],
+  "UserArray": [
+    "x",
+    "y",
+    "z",
+    "0",
+    "1"
+  ],
+  "IntArray": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "Rate": 2.71828,
+  "RateOfTravel": 3.14,
+  "Timeout": 2592063000000000,
+  "Timeout2": 2592063000000000,
+  "Int8": 127,
+  "Nint8": -128,
+  "Uint8": 255,
+  "Int16": 32767,
+  "Nint16": -32768,
+  "Uint16": 65535,
+  "Int32": 1048576,
+  "Nint32": -1232,
+  "Uint32": 255,
+  "ColorCodes": {
+    "black": 0,
+    "blue": 0,
+    "green": 0,
+    "red": 0,
+    "white": 4095
+  },
+  "Map": {
+    "ξ": 1,
+    "ρ": 0.01,
+    "φ": 1.2
+  },
+  "Outer": {
+    "I": 42,
+    "F": 3.1415926,
+    "Msi": {
+      "black": 1,
+      "blue": 3,
+      "green": 2,
+      "red": 0,
+      "white": 0
+    },
+    "Inner": {
+      "I": 42,
+      "F": 3.1415926,
+      "Msi": {
+        "black": 1,
+        "blue": 3,
+        "green": 2,
+        "red": 0,
+        "white": 0
+      },
+      "Msf": {
+        "ξ": 1,
+        "ρ": 0.01,
+        "φ": 1.2
+      }
+    }
+  },
+  "A": {
+    "B": {
+      "C": {
+        "D": {
+          "E": 703710
+        }
+      }
+    }
+  }
+}
+```
+
+
+---
+*List & Map Formats*
 
 The flag implementation for slice is limited to comma separated text
 conversion to a slice of strings
 
 - "a,b,c" -> []string -> ["a","b","c"]
 
-The map implementation is restricted to the struct default tag or
-environment variables. 
+The map implementation is works with the colon separated key:value
+pairs, and commas separating multiple keys:value pairs like
+`key1:value1,key2:value2` environment variables.
 
-Flag to map aren't working.
+---
+*Acknowledgement*
+
+Initial work was based on the idea / implementation of the envconfig
+package in golang; but after refactoring, code generation and import
+modification of the google flag package now doesn't share much code
+with that work
+
+`github.com/kelseyhightower/envconfig` package
+
+
+
+---
+
+Bugs:
+
+Reasonable recursive depth unknown

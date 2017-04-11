@@ -122,10 +122,13 @@ func newIntValue(val int, p *int) *intValue {
 	return (*intValue)(p)
 }
 
-func (i *intValue) Set(s string) error {
-	v, err := strconv.ParseInt(s, 0, 64)
-	*i = intValue(v)
-	return err
+func (i *intValue) Set(s string) (err error) {
+	if len(s) > 0 {
+		var v int64
+		v, err = strconv.ParseInt(s, 0, 32)
+		*i = intValue(v)
+	}
+	return
 }
 
 func (i *intValue) Get() interface{} { return int(*i) }
@@ -140,10 +143,13 @@ func newInt64Value(val int64, p *int64) *int64Value {
 	return (*int64Value)(p)
 }
 
-func (i *int64Value) Set(s string) error {
-	v, err := strconv.ParseInt(s, 0, 64)
-	*i = int64Value(v)
-	return err
+func (i *int64Value) Set(s string) (err error) {
+	if len(s) > 0 {
+		var v int64
+		v, err = strconv.ParseInt(s, 0, 64)
+		*i = int64Value(v)
+	}
+	return
 }
 
 func (i *int64Value) Get() interface{} { return int64(*i) }
@@ -158,10 +164,13 @@ func newUintValue(val uint, p *uint) *uintValue {
 	return (*uintValue)(p)
 }
 
-func (i *uintValue) Set(s string) error {
-	v, err := strconv.ParseUint(s, 0, 32)
-	*i = uintValue(v)
-	return err
+func (i *uintValue) Set(s string) (err error) {
+	if len(s) > 0 {
+		var v uint64
+		v, err = strconv.ParseUint(s, 0, 32)
+		*i = uintValue(v)
+	}
+	return
 }
 
 func (i *uintValue) Get() interface{} { return uint(*i) }
@@ -176,9 +185,12 @@ func newUint64Value(val uint64, p *uint64) *uint64Value {
 	return (*uint64Value)(p)
 }
 
-func (i *uint64Value) Set(s string) error {
-	v, err := strconv.ParseUint(s, 0, 64)
-	*i = uint64Value(v)
+func (i *uint64Value) Set(s string) (err error) {
+	if len(s) > 0 {
+		var v uint64
+		v, err = strconv.ParseUint(s, 0, 64)
+		*i = uint64Value(v)
+	}
 	return err
 }
 
@@ -211,9 +223,12 @@ func newFloat32Value(val float32, p *float32) *float32Value {
 	return (*float32Value)(p)
 }
 
-func (f *float32Value) Set(s string) error {
-	v, err := strconv.ParseFloat(s, 32)
-	*f = float32Value(v)
+func (f *float32Value) Set(s string) (err error) {
+	if len(s) > 0 {
+		var v float64
+		v, err = strconv.ParseFloat(s, 32)
+		*f = float32Value(v)
+	}
 	return err
 }
 
@@ -229,9 +244,12 @@ func newFloat64Value(val float64, p *float64) *float64Value {
 	return (*float64Value)(p)
 }
 
-func (f *float64Value) Set(s string) error {
-	v, err := strconv.ParseFloat(s, 64)
-	*f = float64Value(v)
+func (f *float64Value) Set(s string) (err error) {
+	if len(s) > 0 {
+		var v float64
+		v, err = strconv.ParseFloat(s, 64)
+		*f = float64Value(v)
+	}
 	return err
 }
 
@@ -247,9 +265,12 @@ func newDurationValue(val time.Duration, p *time.Duration) *durationValue {
 	return (*durationValue)(p)
 }
 
-func (d *durationValue) Set(s string) error {
-	v, err := time.ParseDuration(s)
-	*d = durationValue(v)
+func (d *durationValue) Set(s string) (err error) {
+	if len(s) > 0 {
+		var v time.Duration
+		v, err = time.ParseDuration(s)
+		*d = durationValue(v)
+	}
 	return err
 }
 
