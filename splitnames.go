@@ -33,9 +33,11 @@ func (member *MemberType) UnderScoreCamelCaseWords() {
 // hyphenates words for flags between words
 func (member *MemberType) HyphenateCamelCaseWords() {
 	prefix := strings.Replace(member.EnvVarPrefix, member.AppName, "", 1)
+
 	if len(prefix) > 0 && (prefix[0] == '-' || prefix[0] == '_') {
 		prefix = prefix[1:]
 	}
+
 	if len(prefix) > 0 {
 		member.FlagName = prefix + "-" + Capitalize(member.Name)
 	}
@@ -49,5 +51,7 @@ func (member *MemberType) HyphenateCamelCaseWords() {
 		}
 		member.FlagName = strings.Join(name, "-")
 	}
-	member.FlagName = strings.Replace(member.FlagName, "--", "-", -1)
+	for n := strings.Index(member.FlagName, "--"); n > 0; n = strings.Index(member.FlagName, "--") {
+		member.FlagName = strings.Replace(member.FlagName, "--", "-", -1)
+	}
 }

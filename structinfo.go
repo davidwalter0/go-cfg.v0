@@ -2,12 +2,44 @@ package envflagstructconfig
 
 import (
 	"github.com/davidwalter0/envflagstructconfig/flag"
+	"log"
 	"reflect"
 )
 
 // AppEnvVarPrefixOverrideName environment variable application lookup
 // prefix override, default prefix is the struct name
 var AppEnvVarPrefixOverrideName = "APP_OVERRIDE_PREFIX"
+
+// Process bootstrap the configuration from environment and flags to
+// struct with env var name override to replace the prefix of the
+// object name. The prefix argument will replace/override the struct
+// type name, to default to the use of the struct name call the Parse
+// method directly
+func Process(prefix string, sptr interface{}) {
+	var sti *StructInfo = &StructInfo{
+		StructPtr:    sptr,
+		EnvVarPrefix: prefix,
+	}
+
+	if err := sti.Parse(); err != nil { // parse tags, environment, flags
+		log.Fatalf("%v\n", err)
+	}
+
+}
+
+// Parse bootstrap the configuration from environment and flags
+// to struct with env var name override to replace the prefix of the
+// object name
+func Parse(sptr interface{}) (err error) {
+	var sti *StructInfo = &StructInfo{
+		StructPtr: sptr,
+	}
+
+	if err = sti.Parse(); err != nil { // parse tags, environment, flags
+		log.Printf("%v\n", err)
+	}
+	return err
+}
 
 // Parse the struct and flags initializing configuration from tags,
 // environment, and flags in order, additional flags must be defined
@@ -40,10 +72,12 @@ func (structInfo *StructInfo) process() (err error) {
 			element := reflect.ValueOf(structInfo.StructPtr).Elem()
 			elementType := element.Type()
 			AppName := elementType.Name()
-			if structInfo.EnvVarPrefix, ok = lookupEnv(AppEnvVarPrefixOverrideName); !ok {
-				structInfo.EnvVarPrefix = elementType.Name()
-			} else {
-				AppName = structInfo.EnvVarPrefix
+			if len(structInfo.EnvVarPrefix) == 0 {
+				if structInfo.EnvVarPrefix, ok = lookupEnv(AppEnvVarPrefixOverrideName); !ok {
+					structInfo.EnvVarPrefix = elementType.Name()
+				} else {
+					AppName = structInfo.EnvVarPrefix
+				}
 			}
 			prefix := structInfo.EnvVarPrefix
 
