@@ -1,60 +1,18 @@
 #!/bin/bash
-export APP_OVERRIDE_PREFIX=XYZ
-if [[ -n "${APP_OVERRIDE_PREFIX}" ]]; then
-    unset XYZ_DEBUG
-    unset XYZ_PORT
-    unset XYZ_USER
-    unset XYZ_USERNAME
-    unset XYZ_USER_NAME
-    unset XYZ_RATE
-    unset XYZ_TIMEOUT
-    unset XYZ_USERS
-    unset XYZ_COLORCODES
-    unset XYZ_COLOR_CODES
+export APP_OVERRIDE_PREFIX=APP
+export APP_DEBUG="true"
+export APP_PORT="8080"
+export APP_USER="USER"
+export APP_USER_NAME="USER NAME"
+export APP_RATE="0.5"
+export APP_TIMEOUT="3m"
+export APP_USERS="rob,ken,robert"
+export APP_USERS="Me,BobbyMcGee,Nobody"
+export APP_NAME_OVERRIDE="Me,BobbyMcGee,Nobody"
 
-    export XYZ_DEBUG="true"
-    export XYZ_PORT="8080"
-    export XYZ_USER="David"
-    # export XYZ_USERNAME="David Walter"
-    export XYZ_USER_NAME="David Walter"
-    export XYZ_RATE="0.5"
-    export XYZ_TIMEOUT="3m"
-    export XYZ_USERS="rob,ken,robert"
-    export XYZ_USERS="Me,BobbyMcGee,Nobody"
-    export XYZ_NAME_OVERRIDE="Me,BobbyMcGee,Nobody"
+export APP_OUTER_I=-43
+export APP_OUTER_F=-3.1415926
+export APP_OUTER_INNER_I=-42
+export APP_OUTER_INNER_F=-2.71828
+export APP_OUTER_INNER_MSF="e:-2.71828,α:-0.01,β:-3,ξ:-1,π:-3.14159,ρ:-0.01,φ:-1.2"
 
-    export XYZ_OUTER_I=-43
-    export XYZ_OUTER_F=-3.1415926
-    export XYZ_OUTER_MSI="a:1,b:2"
-    export XYZ_OUTER_INNER_I=-42
-    export XYZ_OUTER_INNER_F=-2.71828
-    export XYZ_OUTER_INNER_MSF="e:-2.71828,α:-0.01,β:-3,ξ:-1,π:-3.14159,ρ:-0.01,φ:-1.2"
-else
-    unset MYAPP_DEBUG
-    unset MYAPP_PORT
-    unset MYAPP_USER
-    unset MYAPP_USERNAME
-    unset MYAPP_USER_NAME
-    unset MYAPP_RATE
-    unset MYAPP_TIMEOUT
-    unset MYAPP_USERS
-    unset MYAPP_COLORCODES
-    unset MYAPP_COLOR_CODES
-
-    export MYAPP_DEBUG="true"
-    export MYAPP_PORT="8080"
-    export MYAPP_USER="David"
-    # export MYAPP_USERNAME="David Walter"
-    export MYAPP_USER_NAME="David Walter"
-    export MYAPP_RATE="0.5"
-    export MYAPP_TIMEOUT="3m"
-    export MYAPP_USERS="rob,ken,robert"
-    export MYAPP_USERS="Me,BobbyMcGee,Nobody"
-    export MYAPP_NAME_OVERRIDE="Me,BobbyMcGee,Nobody"
-
-    export MYAPP_OUTER_I=-43
-    export MYAPP_OUTER_F=-3.1415926
-    export MYAPP_OUTER_INNER_I=-42
-    export MYAPP_OUTER_INNER_F=-2.71828
-    export MYAPP_OUTER_INNER_MSF="e:-2.71828,α:-0.01,β:-3,ξ:-1,π:-3.14159,ρ:-0.01,φ:-1.2"
-fi

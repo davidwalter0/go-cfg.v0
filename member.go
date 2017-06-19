@@ -25,6 +25,8 @@ func (member *MemberType) TagInit(tag reflect.StructTag) {
 	member.Name = tag.Get("name")
 	member.Short = tag.Get("short")
 	member.Usage = tag.Get("usage")
+	member.Ignore = tag.Get("ignore")
+
 }
 
 // Capitalize text
@@ -68,9 +70,11 @@ func (member *MemberType) Parse(prefix string,
 			}
 		}
 	default:
-		flag.MakeVar(ptr, member.FlagName, member.Default,
-			member.Usage+fmt.Sprintf(":Env var name(%s) : (%v)",
-				member.KeyName, structField.Type), member.Value)
+		if member.Ignore != "true" {
+			flag.MakeVar(ptr, member.FlagName, member.Default,
+				member.Usage+fmt.Sprintf(":Env var name(%s) : (%v)",
+					member.KeyName, structField.Type), member.Value)
+		}
 	}
 	return
 }

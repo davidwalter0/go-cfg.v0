@@ -1,7 +1,7 @@
 package flag
 
 import (
-	"fmt"
+	// "fmt"
 	"log"
 	"strings"
 	"time"
@@ -3593,7 +3593,9 @@ func MakeVar(addr interface{}, name, defaultValue, usage, override string) {
 
 	default:
 		// log.Fatalf("Unhandled Type %T\n", ptr)
-		// panic(fmt.Sprintf("Unhandled Type %v %T\n", ptr, ptr))
-		fmt.Printf("Unhandled Type %v %T\n", ptr, ptr)
+		// if false {
+		// 	panic(fmt.Sprintf("Unhandled Type %v %T\n", ptr, ptr))
+		// 	fmt.Printf("Unhandled Type %v %T\n", ptr, ptr)
+		// }
 	}
 }
