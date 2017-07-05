@@ -71,8 +71,12 @@ func (member *MemberType) Parse(prefix string,
 		}
 	default:
 		if member.Ignore != "true" {
+			var usage string
+			if len(member.Usage) > 0 {
+				usage = "usage: " + member.Usage
+			}
 			flag.MakeVar(ptr, member.FlagName, member.Default,
-				member.Usage+fmt.Sprintf(":Env var name(%s) : (%v)",
+				usage+fmt.Sprintf(" env var name(%s) : (%v)",
 					member.KeyName, structField.Type), member.Value)
 		}
 	}

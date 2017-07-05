@@ -27,6 +27,22 @@ func Process(prefix string, sptr interface{}) {
 
 }
 
+// ProcessHoldFlags bootstrap the configuration from environment and flags to
+// struct with env var name override to replace the prefix of the
+// object name. The prefix argument will replace/override the struct
+// type name, to default to the use of the struct name call the Parse
+// method directly
+func ProcessHoldFlags(prefix string, sptr interface{}) {
+	var sti *StructInfo = &StructInfo{
+		StructPtr:    sptr,
+		EnvVarPrefix: prefix,
+	}
+
+	if err := sti.ParseHoldFlags(); err != nil { // parse tags, environment, hold off on flags
+		log.Fatalf("%v\n", err)
+	}
+}
+
 // Parse bootstrap the configuration from environment and flags
 // to struct with env var name override to replace the prefix of the
 // object name
@@ -51,6 +67,22 @@ func (structInfo *StructInfo) Parse() (err error) {
 			return
 		}
 		flag.Parse()
+	} else {
+		panic("Parse called more than once")
+	}
+	return
+}
+
+// ParseHoldFlags the struct and prep flags, but don't call
+// flags.Parse, initializing configuration from tags, environment, and
+// flags in order, additional flags must be defined prior to Parse
+// call as it calls flag.Parse
+func (structInfo *StructInfo) ParseHoldFlags() (err error) {
+	if !structInfo.Processed {
+		structInfo.Processed = true
+		if err = structInfo.process(); err != nil {
+			return
+		}
 	} else {
 		panic("Parse called more than once")
 	}
