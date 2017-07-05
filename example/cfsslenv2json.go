@@ -1,6 +1,6 @@
 /*
 
-Example command line use of package envflagstructconfig to configure
+Example command line use of package cfg to configure
 using environment variables or flags
 
 */
@@ -10,7 +10,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/davidwalter0/envflagstructconfig"
+	"github.com/davidwalter0/go-cfg"
 	// "io/ioutil"
 )
 
@@ -65,7 +65,7 @@ type App struct {
 func main() {
 	var app App
 
-	envflagstructconfig.Parse(&app)
+	cfg.Parse(&app)
 
 	var appCfssl CFSSL = CFSSL{
 		CN:    app.CN,

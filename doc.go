@@ -8,7 +8,7 @@
 
 /*
 
-envflagstructconfig extract and apply configuration from the
+cfg extract and apply configuration from the
 environment or command line flags
 
    - types are inferred from structure member types
@@ -60,4 +60,4 @@ environment or command line flags
 
 */
 
-package envflagstructconfig
+package cfg

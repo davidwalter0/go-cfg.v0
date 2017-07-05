@@ -3,7 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/davidwalter0/envflagstructconfig"
+	"github.com/davidwalter0/go-cfg"
 )
 
 type myApp struct {
@@ -16,7 +16,7 @@ type myApp struct {
 func main() {
 	var myapp myApp
 
-	var sti *envflagstructconfig.StructInfo = &envflagstructconfig.StructInfo{
+	var sti *cfg.StructInfo = &cfg.StructInfo{
 		StructPtr: &myapp,
 	}
 

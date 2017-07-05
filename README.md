@@ -81,9 +81,9 @@ commands
 
 
 ```
-    go get github.com/davidwalter0/envflagstructconfig
+    go get github.com/davidwalter0/go-cfg
 
-    cd ${GOPATH}/src/github.com/davidwalter0/envflagstructconfig/example
+    cd ${GOPATH}/src/github.com/davidwalter0/go-cfg/example
     . environment ; go run main.go types.go
 
 ```
@@ -111,7 +111,7 @@ by setting the environment variable for the application prefix
 
 Add code similar to the following before calling
 
-`envflagstructconfig.Initialize(prefix,&structure)`
+`cfg.Initialize(prefix,&structure)`
 
 ```
 	var prefix = os.Getenv("APP_OVERRIDE_PREFIX")
@@ -119,7 +119,7 @@ Add code similar to the following before calling
 		prefix = "myapp"
 	}
 
-    envflagstructconfig.Initialize(prefix,&structure)
+    cfg.Initialize(prefix,&structure)
 ```
 
 Set the appropriate environment variable and run
@@ -165,7 +165,7 @@ Partial example from example/types.go
 To use:
 
 ```
-go get github.com/davidwalter0/envflagstructconfig
+go get github.com/davidwalter0/go-cfg
 
 ```
 
@@ -177,7 +177,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/davidwalter0/envflagstructconfig"
+	"github.com/davidwalter0/go-cfg"
 )
 
 type myApp struct {
@@ -190,7 +190,7 @@ type myApp struct {
 func main() {
 	var myapp myApp
 
-	var sti *envflagstructconfig.StructInfo = &envflagstructconfig.StructInfo{
+	var sti *cfg.StructInfo = &cfg.StructInfo{
 		StructPtr: &myapp,
 	}
 

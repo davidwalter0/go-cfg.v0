@@ -1,4 +1,4 @@
-package envflagstructconfig
+package cfg
 
 import (
 	"testing"

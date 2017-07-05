@@ -1,4 +1,4 @@
-package envflagstructconfig
+package cfg
 
 // StructInfo struct to hold parse information
 type StructInfo struct {

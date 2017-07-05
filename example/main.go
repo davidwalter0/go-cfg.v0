@@ -6,8 +6,8 @@ import (
 	"log"
 	"os"
 
-	"github.com/davidwalter0/envflagstructconfig"
-	"github.com/davidwalter0/envflagstructconfig/flag"
+	"github.com/davidwalter0/go-cfg"
+	"github.com/davidwalter0/go-cfg/flag"
 )
 
 type Key string
@@ -21,7 +21,7 @@ func main() {
 	{
 		var myapp myAPP
 
-		var sti *envflagstructconfig.StructInfo = &envflagstructconfig.StructInfo{
+		var sti *cfg.StructInfo = &cfg.StructInfo{
 			StructPtr: &myapp,
 		}
 		if err := sti.Parse(); err != nil {

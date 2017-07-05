@@ -1,6 +1,6 @@
 // +build appengine
 
-package envflagstructconfig
+package cfg
 
 import "os"
 

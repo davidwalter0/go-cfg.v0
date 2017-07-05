@@ -1,7 +1,7 @@
-package envflagstructconfig
+package cfg
 
 import (
-	"github.com/davidwalter0/envflagstructconfig/flag"
+	"github.com/davidwalter0/go-cfg/flag"
 
 	"fmt"
 	"log"
