@@ -9,9 +9,13 @@ import (
 	"strings"
 )
 
+var announceDuplicates bool
+
 func ignore() {
 	log.Println()
 }
+
+var allFlagNames = make(map[string]bool)
 
 // TagInit initialize the MemberType struct from the struct tags
 func (member *MemberType) TagInit(tag reflect.StructTag) {
@@ -75,9 +79,20 @@ func (member *MemberType) Parse(prefix string,
 			if len(member.Usage) > 0 {
 				usage = "usage: " + member.Usage
 			}
-			flag.MakeVar(ptr, member.FlagName, member.Default,
-				usage+fmt.Sprintf(" env var name(%s) : (%v)",
-					member.KeyName, structField.Type), member.Value)
+			if _, ok := allFlagNames[member.FlagName]; !ok {
+				flag.MakeVar(ptr, member.FlagName, member.Default,
+					usage+fmt.Sprintf(" env var name(%s) : (%v)",
+						member.KeyName, structField.Type), member.Value)
+				allFlagNames[member.FlagName] = true
+			} else {
+				if !announceDuplicates {
+					fmt.Printf("Duplicate flag(s)/env vars found\n")
+					fmt.Println(strings.ToUpper(fmt.Sprintf("%-20s %-20s", "flag", "env vars")))
+					fmt.Println("-----------------------------------------")
+					announceDuplicates = true
+				}
+				fmt.Printf("%-20s %-20s\n", member.FlagName, member.KeyName)
+			}
 		}
 	}
 	return

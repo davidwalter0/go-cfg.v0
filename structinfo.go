@@ -1,8 +1,10 @@
 package cfg
 
 import (
+	"fmt"
 	"github.com/davidwalter0/go-cfg/flag"
 	"log"
+	"os"
 	"reflect"
 )
 
@@ -24,7 +26,10 @@ func Process(prefix string, sptr interface{}) {
 	if err := sti.Parse(); err != nil { // parse tags, environment, flags
 		log.Fatalf("%v\n", err)
 	}
-
+	if announceDuplicates {
+		fmt.Println()
+		os.Exit(1)
+	}
 }
 
 // ProcessHoldFlags bootstrap the configuration from environment and flags to
@@ -40,6 +45,10 @@ func ProcessHoldFlags(prefix string, sptr interface{}) {
 
 	if err := sti.ParseHoldFlags(); err != nil { // parse tags, environment, hold off on flags
 		log.Fatalf("%v\n", err)
+	}
+	if announceDuplicates {
+		fmt.Println()
+		os.Exit(1)
 	}
 }
 

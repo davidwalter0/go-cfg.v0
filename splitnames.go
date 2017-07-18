@@ -25,6 +25,8 @@ func (member *MemberType) UnderScoreCamelCaseWords() {
 		member.KeyName = strings.Join(envSepName, "_")
 		if len(member.EnvVarPrefix) > 0 {
 			member.KeyName = strings.ToUpper(member.EnvVarPrefix + "_" + member.KeyName)
+		} else {
+			member.KeyName = strings.ToUpper(member.KeyName)
 		}
 	}
 }
