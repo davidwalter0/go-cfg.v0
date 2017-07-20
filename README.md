@@ -5,19 +5,21 @@
 Enhanced to include assigning and parsing values from the struct tags,
 environment variables and command line flags
 
-- types are inferred from structure member types
-- app prefix inferred from struct name
-- value assignment priority is from top to bottom
+- Types are inferred from structure member types
+- App prefix inferred from struct name
+- Value assignment priority is from top to bottom
   - struct tag
   - environment
   - flag
-- names 
+- Names 
   - environment variable: recursive struct member name with upper case
     camel case underscore separated
   - flag recursive struct member name with lower case camel case
     hyphenated separated
-- flags override environment variables, which in turn override struct
+- Flags override environment variables, which in turn override struct
   tags, which override the type default
+- Added preprint help text by setting cfg.HelpText before Parse or Process
+
 
 ```
 type S struct {
@@ -379,8 +381,6 @@ modification of the google flag package now doesn't share much code
 with that work
 
 `github.com/kelseyhightower/envconfig` package
-
-
 
 ---
 

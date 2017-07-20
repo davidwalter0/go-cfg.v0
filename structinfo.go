@@ -6,11 +6,35 @@ import (
 	"log"
 	"os"
 	"reflect"
+	"strings"
 )
 
 // AppEnvVarPrefixOverrideName environment variable application lookup
 // prefix override, default prefix is the struct name
 var AppEnvVarPrefixOverrideName = "APP_OVERRIDE_PREFIX"
+
+var helpText string
+
+// HelpText pre write text for help
+func HelpText(text string) {
+	helpText = text
+}
+
+// Usage add usage text for flags/help processing
+var Usage = func() {
+	fmt.Fprintf(os.Stderr, "\nUsage of %s:\n", strings.Split(os.Args[0], "/")[len(os.Args)-1])
+	if len(helpText) > 0 {
+		fmt.Fprintf(os.Stderr, "\n%s\n\n", helpText)
+	}
+	flag.PrintDefaults()
+}
+
+func init() {
+	flag.Usage = Usage
+	// flag.Usage = func() {
+	// 	fmt.Fprintf(os.Stderr, "This is not helpful.\n")
+	// }
+}
 
 // Process bootstrap the configuration from environment and flags to
 // struct with env var name override to replace the prefix of the
