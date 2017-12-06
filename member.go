@@ -66,11 +66,12 @@ func (member *MemberType) Parse(prefix string,
 	}
 
 	member.EnvVarPrefix = prefix
-	member.KeyName = member.Name
 	member.FlagName = member.Name
 	member.UnderScoreCamelCaseWords()
 	member.HyphenateCamelCaseWords()
 	member.EnvInit()
+	// Env variable names historically didn't allow hyphenation
+	member.KeyName = strings.Replace(member.KeyName, "-", "_", -1)
 
 	switch structField.Type.Kind() {
 	case reflect.Struct:
