@@ -22,7 +22,10 @@ func HelpText(text string) {
 
 // Usage add usage text for flags/help processing
 var Usage = func() {
-	fmt.Fprintf(os.Stderr, "\nUsage of %s:\n", strings.Split(os.Args[0], "/")[len(os.Args)-1])
+	var parts = strings.Split(os.Args[0], "/")
+	var l = len(parts)
+	var Program = parts[l-1]
+	fmt.Fprintf(os.Stderr, "\nUsage of %s:\n", Program)
 	if len(helpText) > 0 {
 		fmt.Fprintf(os.Stderr, "\n%s\n\n", helpText)
 	}
@@ -36,24 +39,49 @@ func init() {
 	// }
 }
 
+// AddPrefixDeferFreeze initialize struct but don't freeze flags
+func AddPrefixDeferFreeze(prefix string, sptr interface{}) (err error) {
+	return ProcessHoldFlags(prefix, sptr)
+}
+
+// AddStruct bootstrap the configuration from environment and flags to
+// struct with env var name override with empty prefix, defer freeze
+// of flags
+func AddStruct(sptr interface{}) (err error) {
+	return ProcessHoldFlags("", sptr)
+}
+
+var finalized = false
+
+// Finalize the configuration
+func Finalize() {
+	if !finalized {
+		Freeze()
+		finalized = true
+	}
+}
+
 // Process bootstrap the configuration from environment and flags to
 // struct with env var name override to replace the prefix of the
 // object name. The prefix argument will replace/override the struct
 // type name, to default to the use of the struct name call the Parse
 // method directly
-func Process(prefix string, sptr interface{}) {
+func Process(prefix string, sptr interface{}) (err error) {
 	var sti *StructInfo = &StructInfo{
 		StructPtr:    sptr,
 		EnvVarPrefix: prefix,
+		EmptyPrefix:  len(prefix) == 0,
 	}
 
-	if err := sti.Parse(); err != nil { // parse tags, environment, flags
-		log.Fatalf("%v\n", err)
+	if err = sti.Parse(); err != nil { // parse tags, environment, flags
+		log.Println(*sti)
+		return
 	}
 	if announceDuplicates {
 		fmt.Println()
 		os.Exit(1)
 	}
+	return
 }
 
 // ProcessHoldFlags bootstrap the configuration from environment and flags to
@@ -61,19 +89,27 @@ func Process(prefix string, sptr interface{}) {
 // object name. The prefix argument will replace/override the struct
 // type name, to default to the use of the struct name call the Parse
 // method directly
-func ProcessHoldFlags(prefix string, sptr interface{}) {
+func ProcessHoldFlags(prefix string, sptr interface{}) (err error) {
 	var sti *StructInfo = &StructInfo{
 		StructPtr:    sptr,
 		EnvVarPrefix: prefix,
+		EmptyPrefix:  len(prefix) == 0,
 	}
 
-	if err := sti.ParseHoldFlags(); err != nil { // parse tags, environment, hold off on flags
-		log.Fatalf("%v\n", err)
+	// parse tags, environment, hold off on flags
+	if err = sti.ParseHoldFlags(); err != nil {
+		return
 	}
 	if announceDuplicates {
 		fmt.Println()
 		os.Exit(1)
 	}
+	return
+}
+
+// Freeze flags with current set
+func Freeze() {
+	flag.Parse()
 }
 
 // Parse bootstrap the configuration from environment and flags
@@ -137,11 +173,13 @@ func (structInfo *StructInfo) process() (err error) {
 			element := reflect.ValueOf(structInfo.StructPtr).Elem()
 			elementType := element.Type()
 			AppName := elementType.Name()
-			if len(structInfo.EnvVarPrefix) == 0 {
-				if structInfo.EnvVarPrefix, ok = lookupEnv(AppEnvVarPrefixOverrideName); !ok {
-					structInfo.EnvVarPrefix = elementType.Name()
-				} else {
-					AppName = structInfo.EnvVarPrefix
+			if !structInfo.EmptyPrefix {
+				if len(structInfo.EnvVarPrefix) == 0 {
+					if structInfo.EnvVarPrefix, ok = lookupEnv(AppEnvVarPrefixOverrideName); !ok {
+						structInfo.EnvVarPrefix = elementType.Name()
+					} else {
+						AppName = structInfo.EnvVarPrefix
+					}
 				}
 			}
 			prefix := structInfo.EnvVarPrefix

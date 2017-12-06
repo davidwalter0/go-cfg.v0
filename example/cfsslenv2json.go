@@ -56,9 +56,12 @@ type App struct {
 	CN    string `default:"example.com"`
 	Name  Name
 	Key   Key
-	Hosts []string `json:"hosts" help:"comma separated list of hosts"`
+	Hosts []string `name:"host-comma-list" help:"comma separated list of hosts"`
 	Outer struct {
-		Inner string
+		Inner struct {
+			S string `json:"string"`
+			I int
+		}
 	}
 }
 

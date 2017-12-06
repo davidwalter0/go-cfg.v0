@@ -27,8 +27,20 @@ func (member *MemberType) TagInit(tag reflect.StructTag) {
 	member.Default = tag.Get("default")
 	member.Value = member.Default
 	member.Name = tag.Get("name")
+	if t := tag.Get("json"); len(t) > 0 && len(member.Name) == 0 {
+		member.Name = t
+	}
 	member.Short = tag.Get("short")
-	member.Usage = tag.Get("usage")
+	var text = tag.Get("usage")
+	if text = tag.Get("usage"); len(text) > 0 {
+		member.Usage = text
+	}
+	if text = tag.Get("doc"); len(text) > 0 {
+		member.Usage = text
+	}
+	if text = tag.Get("help"); len(text) > 0 {
+		member.Usage = text
+	}
 	member.Ignore = tag.Get("ignore")
 
 }
@@ -65,7 +77,11 @@ func (member *MemberType) Parse(prefix string,
 		depth = depth + 1
 		element := reflect.ValueOf(ptr).Elem()
 		elementType := element.Type()
-		prefix = prefix + "_" + Capitalize(member.Name)
+		if len(prefix) > 0 {
+			prefix = prefix + "_" + Capitalize(member.Name)
+		} else {
+			prefix = Capitalize(member.Name)
+		}
 		for i := 0; i < elementType.NumField(); i++ {
 			structField := elementType.Field(i)
 			ptr := element.Field(i).Addr().Interface()

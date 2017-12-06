@@ -19,7 +19,11 @@ environment variables and command line flags
 - Flags override environment variables, which in turn override struct
   tags, which override the type default
 - Added preprint help text by setting cfg.HelpText before Parse or Process
-
+- json acts as an alias for struct tag name if name tag missing
+  - `name:"abc-def"` 
+  - `json:"abc-def"`
+- If both name and json tags are missing downcase and hyphenated
+  struct name is used
 
 ```
 type S struct {

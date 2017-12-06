@@ -5,6 +5,7 @@ type StructInfo struct {
 	StructPtr    interface{} // structure pointer to use for initialization
 	EnvVarPrefix string      // Application prefix environment variable prefix
 	Processed    bool
+	EmptyPrefix  bool
 }
 
 // MemberType struct to hold parse information
