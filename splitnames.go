@@ -28,6 +28,7 @@ func (member *MemberType) UnderScoreCamelCaseWords() {
 		} else {
 			member.KeyName = strings.ToUpper(member.KeyName)
 		}
+		member.KeyName = strings.Replace(member.KeyName, "-", "_", -1)
 	}
 }
 
