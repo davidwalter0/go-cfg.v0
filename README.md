@@ -4,7 +4,7 @@
 
 Enhanced to include assigning and parsing values from the struct tags,
 environment variables and command line flags
-
+- `json:"-"` tagged items or with a field `ignore:"true"` are skipped
 - Types are inferred from structure member types
 - App prefix inferred from struct name
 - Value assignment priority is from top to bottom

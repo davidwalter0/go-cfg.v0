@@ -19,6 +19,8 @@ var allFlagNames = make(map[string]bool)
 
 // TagInit initialize the MemberType struct from the struct tags
 func (member *MemberType) TagInit(tag reflect.StructTag) {
+	var jsonTag string
+
 	defer func() {
 		if err := recover(); err != nil {
 		}
@@ -27,9 +29,11 @@ func (member *MemberType) TagInit(tag reflect.StructTag) {
 	member.Default = tag.Get("default")
 	member.Value = member.Default
 	member.Name = tag.Get("name")
-	if t := tag.Get("json"); len(t) > 0 && len(member.Name) == 0 {
-		member.Name = t
+
+	if jsonTag = tag.Get("json"); len(jsonTag) > 0 && len(member.Name) == 0 {
+		member.Name = jsonTag
 	}
+
 	member.Short = tag.Get("short")
 	var text = tag.Get("usage")
 	if text = tag.Get("usage"); len(text) > 0 {
@@ -43,6 +47,18 @@ func (member *MemberType) TagInit(tag reflect.StructTag) {
 	}
 	member.Ignore = tag.Get("ignore")
 
+	// ignore fields with ,omit in json tag
+	if strings.Index(jsonTag, ",omitempty") == -1 && strings.Index(jsonTag, ",omit") > 0 {
+		member.Ignore = "true"
+	}
+	// ignore fields with ,omit in json tag
+	if jsonTag == "-" {
+		member.Ignore = "true"
+	}
+	// ignore fields with 'ignore' in json tag
+	if strings.Index(member.Ignore, "true") > 0 {
+		member.Ignore = "true"
+	}
 }
 
 // Capitalize text
@@ -61,6 +77,7 @@ func (member *MemberType) Parse(prefix string,
 	structField reflect.StructField,
 	ptr interface{}, depth int) (err error) {
 	member.TagInit(structField.Tag)
+
 	if len(member.Name) == 0 {
 		member.Name = structField.Name
 	}
