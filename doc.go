@@ -60,4 +60,4 @@ environment or command line flags
 
 */
 
-package cfg
+package cfg // import "github.com/davidwalter0/go-cfg"

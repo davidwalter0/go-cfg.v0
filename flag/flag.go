@@ -69,7 +69,7 @@
 	flag set.
 */
 
-package flag
+package flag // import "github.com/davidwalter0/go-cfg/flag"
 
 import (
 	"errors"

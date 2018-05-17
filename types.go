@@ -1,4 +1,4 @@
-package cfg
+package cfg // import "github.com/davidwalter0/go-cfg"
 
 // StructInfo struct to hold parse information
 type StructInfo struct {
