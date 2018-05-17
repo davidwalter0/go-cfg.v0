@@ -2,7 +2,8 @@ package cfg // import "github.com/davidwalter0/go-cfg"
 
 import (
 	"fmt"
-	"github.com/davidwalter0/go-cfg/flag"
+	"github.com/davidwalter0/go-flag"
+
 	"log"
 	"os"
 	"reflect"

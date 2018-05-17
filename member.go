@@ -1,7 +1,7 @@
 package cfg // import "github.com/davidwalter0/go-cfg"
 
 import (
-	"github.com/davidwalter0/go-cfg/flag"
+	"github.com/davidwalter0/go-flag"
 
 	"fmt"
 	"log"
