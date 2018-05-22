@@ -11,7 +11,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/davidwalter0/go-cfg"
-	// "io/ioutil"
 )
 
 /*

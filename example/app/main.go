@@ -2,12 +2,11 @@ package main
 
 import (
 	"encoding/json"
-	// "fmt"
 	"log"
 	"os"
 
 	"github.com/davidwalter0/go-cfg"
-	"github.com/davidwalter0/go-cfg/flag"
+	"github.com/davidwalter0/go-flag"
 )
 
 type Key string
