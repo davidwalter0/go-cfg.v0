@@ -1,3 +1,6 @@
+// Run with
+// go run simple.go
+
 package main
 
 import (
