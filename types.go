@@ -6,6 +6,7 @@ type StructInfo struct {
 	EnvVarPrefix string      // Application prefix environment variable prefix
 	Processed    bool
 	EmptyPrefix  bool
+	// EnvOnly      bool // processes only from environment variables, no flags
 }
 
 // MemberType struct to hold parse information

@@ -2,6 +2,7 @@ package cfg // import "github.com/davidwalter0/go-cfg"
 
 import (
 	"fmt"
+
 	"github.com/davidwalter0/go-flag"
 
 	"log"
@@ -13,7 +14,13 @@ import (
 // AppEnvVarPrefixOverrideName environment variable application lookup
 // prefix override, default prefix is the struct name
 var AppEnvVarPrefixOverrideName = "APP_OVERRIDE_PREFIX"
+var OverrideText = `
+APP_OVERRIDE_PREFIX=ex
 
+The environment variable APP_OVERRIDE_PREFIX overrides the prefix of
+each environment variable to value. The value will be converted to
+upper case like ex - EX
+`
 var helpText string
 
 // HelpText pre write text for help
@@ -31,6 +38,7 @@ var Usage = func() {
 		fmt.Fprintf(os.Stderr, "\n%s\n\n", helpText)
 	}
 	flag.PrintDefaults()
+	fmt.Fprintf(os.Stderr, OverrideText)
 }
 
 func init() {
@@ -62,6 +70,17 @@ func Finalize() {
 	}
 }
 
+// Env loads environment variables. Env does not process or add flags
+// more friendly to go test et. al.
+func Env(sptr interface{}) (err error) {
+	// flag.SupressFlagUsageMsg = true
+	var sti *StructInfo = &StructInfo{
+		StructPtr: sptr,
+		// EnvOnly:     true,
+	}
+	return sti.process()
+}
+
 // Process bootstrap the configuration from environment and flags to
 // struct with env var name override to replace the prefix of the
 // object name. The prefix argument will replace/override the struct
@@ -74,15 +93,15 @@ func Process(prefix string, sptr interface{}) (err error) {
 		EmptyPrefix:  len(prefix) == 0,
 	}
 
-	if err = sti.Parse(); err != nil { // parse tags, environment, flags
-		log.Println(*sti)
+	// parse tags, environment variables, defer flag freezing
+	if err = sti.ParseHoldFlags(); err != nil {
 		return
 	}
 	if announceDuplicates {
 		fmt.Println()
 		os.Exit(1)
 	}
-	return
+	return sti.process()
 }
 
 // ProcessHoldFlags bootstrap the configuration from environment and flags to

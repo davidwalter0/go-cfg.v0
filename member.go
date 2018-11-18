@@ -115,7 +115,7 @@ func (member *MemberType) Parse(prefix string,
 			}
 			if _, ok := allFlagNames[member.FlagName]; !ok {
 				flag.MakeVar(ptr, member.FlagName, member.Default,
-					usage+fmt.Sprintf(" env var name(%s) : (%v)",
+					usage+fmt.Sprintf(" Env %-32s : (%v)",
 						member.KeyName, structField.Type), member.Value)
 				allFlagNames[member.FlagName] = true
 			} else {
