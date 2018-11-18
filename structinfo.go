@@ -5,7 +5,6 @@ import (
 
 	"github.com/davidwalter0/go-flag"
 
-	"log"
 	"os"
 	"reflect"
 	"strings"
@@ -140,10 +139,7 @@ func Parse(sptr interface{}) (err error) {
 		StructPtr: sptr,
 	}
 
-	if err = sti.Parse(); err != nil { // parse tags, environment, flags
-		log.Printf("%v\n", err)
-	}
-	return err
+	return sti.Parse()
 }
 
 // Parse the struct and flags initializing configuration from tags,
