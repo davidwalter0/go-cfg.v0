@@ -1,6 +1,8 @@
 package cfg // import "github.com/davidwalter0/go-cfg"
 
 import (
+	"strconv"
+
 	"github.com/davidwalter0/go-flag"
 
 	"fmt"
@@ -45,19 +47,23 @@ func (member *MemberType) TagInit(tag reflect.StructTag) {
 	if text = tag.Get("help"); len(text) > 0 {
 		member.Usage = text
 	}
-	member.Ignore = tag.Get("ignore")
 
 	// ignore fields with ,omit in json tag
 	if strings.Index(jsonTag, ",omitempty") == -1 && strings.Index(jsonTag, ",omit") > 0 {
-		member.Ignore = "true"
-	}
-	// ignore fields with ,omit in json tag
-	if jsonTag == "-" {
-		member.Ignore = "true"
+		member.Ignore = true
+	} else if jsonTag == "-" {
+		// ignore fields with ,omit in json tag
+		member.Ignore = true
 	}
 	// ignore fields with 'ignore' in json tag
-	if strings.Index(member.Ignore, "true") > 0 {
-		member.Ignore = "true"
+	text = tag.Get("ignore")
+	if v, err := strconv.ParseBool(text); err == nil {
+		member.Ignore = v
+	}
+
+	required := tag.Get("required")
+	if v, err := strconv.ParseBool(required); err == nil {
+		member.Required = v
 	}
 }
 
@@ -108,12 +114,16 @@ func (member *MemberType) Parse(prefix string,
 			}
 		}
 	default:
-		if member.Ignore != "true" {
+		if !member.Ignore {
 			var usage string
 			if len(member.Usage) > 0 {
 				usage = "usage: " + member.Usage
 			}
 			if _, ok := allFlagNames[member.FlagName]; !ok {
+
+				if member.Required && len(member.Value) == 0 {
+					return fmt.Errorf("Required field: Name [%s] FlagName [%s] Env var name [%s] has no default and is unset", member.Name, member.FlagName, member.KeyName)
+				}
 				flag.MakeVar(ptr, member.FlagName, member.Default,
 					usage+fmt.Sprintf(" Env %-32s : (%v)",
 						member.KeyName, structField.Type), member.Value)

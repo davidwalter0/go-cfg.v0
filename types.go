@@ -23,5 +23,6 @@ type MemberType struct {
 	Value        string // if env use, else if default tag use, else use type's default
 	Depth        int
 	SubPrefix    string
-	Ignore       string
+	Ignore       bool
+	Required     bool
 }
