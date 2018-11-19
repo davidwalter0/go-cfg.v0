@@ -71,11 +71,22 @@ func Finalize() {
 
 // Env loads environment variables. Env does not process or add flags
 // more friendly to go test et. al.
+func EnvPrefix(prefix string, sptr interface{}) (err error) {
+	// flag.SupressFlagUsageMsg = true
+	var sti *StructInfo = &StructInfo{
+		StructPtr:    sptr,
+		EnvVarPrefix: prefix,
+	}
+	return sti.process()
+}
+
+// Env loads environment variables. Env does not process or add flags
+// more friendly to go test et. al.
 func Env(sptr interface{}) (err error) {
 	// flag.SupressFlagUsageMsg = true
 	var sti *StructInfo = &StructInfo{
-		StructPtr: sptr,
-		// EnvOnly:     true,
+		StructPtr:   sptr,
+		EmptyPrefix: true,
 	}
 	return sti.process()
 }
