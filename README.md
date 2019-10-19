@@ -2,6 +2,19 @@
 
 *Designed to simplify configuration option mgmt application start up*
 
+
+tag: v0.3.0: working toward common option load / save
+
+TODO:
+Add module support flags options
+
+-config|-load   filename : load configuration from a file (json or yaml)
+-save  |-store  filename : write configuration to specified file (json or yaml)
+
+file format of write inferred from extension. If not .yaml or .json,
+will prefer yaml
+
+
 Enhanced to include assigning and parsing values from the struct tags,
 environment variables and command line flags
 - `json:"-"` tagged items or with a field `ignore:"true"` are skipped
