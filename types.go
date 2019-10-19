@@ -6,6 +6,7 @@ type StructInfo struct {
 	EnvVarPrefix string      // Application prefix environment variable prefix
 	Processed    bool
 	EmptyPrefix  bool
+	// EnvOnly      bool // processes only from environment variables, no flags
 }
 
 // MemberType struct to hold parse information
@@ -22,5 +23,6 @@ type MemberType struct {
 	Value        string // if env use, else if default tag use, else use type's default
 	Depth        int
 	SubPrefix    string
-	Ignore       string
+	Ignore       bool
+	Required     bool
 }
